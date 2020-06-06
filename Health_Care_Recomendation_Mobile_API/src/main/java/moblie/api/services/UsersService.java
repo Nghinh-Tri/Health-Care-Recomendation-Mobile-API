@@ -18,5 +18,7 @@ public class UsersService {
 		return usersRepository.findAll();
 	}
 	
-	
+	public Users login (String phone, String password) {
+		return usersRepository.checkLogin(phone, password);
+	}
 }
