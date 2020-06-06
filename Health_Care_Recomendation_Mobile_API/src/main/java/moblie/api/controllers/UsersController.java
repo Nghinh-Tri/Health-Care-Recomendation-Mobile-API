@@ -40,9 +40,16 @@ public class UsersController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);		
 	}
 	
+	@PostMapping("/users/signUp")
+	public void signUp(@RequestBody Users users){
+		service.save(users);
+	}
+	
 	@PutMapping("/users/{phone}")
 	public ResponseEntity<?> editDetail(@RequestBody Users users, @PathVariable String phone){
 		try {
+			Users find = service.getByID(phone);
+			service.save(users);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

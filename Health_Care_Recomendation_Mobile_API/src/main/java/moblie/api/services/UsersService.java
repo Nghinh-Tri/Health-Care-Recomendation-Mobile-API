@@ -21,4 +21,12 @@ public class UsersService {
 	public Users login (String phone, String password) {
 		return usersRepository.checkLogin(phone, password);
 	}
+	
+	public Users getByID(String id) {
+		return usersRepository.findById(id).get();
+	}
+	
+	public void save(Users users) {
+		usersRepository.save(users);
+	}
 }
