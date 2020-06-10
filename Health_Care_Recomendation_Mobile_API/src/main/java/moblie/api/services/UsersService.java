@@ -18,8 +18,12 @@ public class UsersService {
 		return usersRepository.findAll();
 	}
 	
-	public Users login (String phone, String password) {
-		return usersRepository.checkLogin(phone, password);
+	public Users login (String phone, String passwords){
+		return usersRepository.checkLogin(phone,passwords);
+	}
+	
+	public Users isExist(String phone) {
+		return usersRepository.isExist(phone);
 	}
 	
 	public Users getByID(String id) {
@@ -28,5 +32,5 @@ public class UsersService {
 	
 	public void save(Users users) {
 		usersRepository.save(users);
-	}
+	}	
 }

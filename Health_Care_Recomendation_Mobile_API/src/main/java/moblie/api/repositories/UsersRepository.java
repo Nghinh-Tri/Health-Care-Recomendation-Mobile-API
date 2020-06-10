@@ -10,6 +10,9 @@ import moblie.api.entities.Users;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, String>{
 	
-	@Query(value="Select fullname from users where phone=:phone and passwords=:passwords", nativeQuery = true)
-	public Users checkLogin(@Param("phone") String phone, @Param("passwords") String passwords);
+	@Query(value="Select phone, passwords, age, fullname, roles from users u where u.phone=?1 and u.passwords=?2", nativeQuery = true)
+	public Users checkLogin(String phone,String passwords);
+	
+	@Query(value="Select phone, passwords, age, fullname, roles from users u where u.phone=?1", nativeQuery = true)
+	public Users isExist(String phone);
 }
