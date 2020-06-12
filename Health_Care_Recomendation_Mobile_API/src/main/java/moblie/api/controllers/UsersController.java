@@ -52,18 +52,15 @@ public class UsersController {
 	@PostMapping("/users/signUp")
 	public ResponseEntity<?> signUp(@RequestBody Users users) {
 		try {
-			if (users.getPhone().trim().length() > 0 && 
-					users.getPasswords().trim().length() > 0 &&
-					users.getAge() > 0 &&
-					users.getFullname().trim().length() > 0 &&
-					users.getRoles().trim().length() > 0) {
+			if (users.getPhone().trim().length() > 0 && users.getPasswords().trim().length() > 0 && users.getAge() > 0
+					&& users.getFullname().trim().length() > 0 && users.getRoles().trim().length() > 0) {
 				Users find = service.isExist(users.getPhone());
 				if (find == null) {
 					service.save(users);
 					return new ResponseEntity<Users>(HttpStatus.OK);
-				}				
+				}
 			}
-			return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);			
+			return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
 			return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
 		}
@@ -72,18 +69,15 @@ public class UsersController {
 
 	@PutMapping("/users/{phone}")
 	public ResponseEntity<?> editDetail(@RequestBody Users users, @PathVariable String phone) {
-		try {		
-			phone = phone.replace("{", "").replace("}", "");			
+		try {
+			phone = phone.replace("{", "").replace("}", "");
 			Users find = service.isExist(phone);
 			if (find != null) {
-//				System.out.println(users.getPhone().isEmpty());
-//				System.out.println(users.getPhone().isEmpty());
-//				if (users.getPhone().trim().length() == 0 || users.getPhone().isEmpty())
-					users.setPhone(phone);
+				users.setPhone(phone);
 				service.save(users);
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);			
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
