@@ -18,9 +18,10 @@ if __name__ == '__main__':
         soup = BeautifulSoup(html,"html.parser")
         for link in soup.find_all('a', attrs={'class': 'tendonviwebngoai'}):
             name = str(link.string)
-
-            lat = util.getLocation("AIzaSyAEHOJH4Oi0FWuB9rlQOBlf4eQ2kgXLFo4",name,"lat")
-            lgn = util.getLocation("AIzaSyAEHOJH4Oi0FWuB9rlQOBlf4eQ2kgXLFo4",name,"lng")
+            
+            key = "AIzaSyAEHOJH4Oi0FWuB9rlQOBlf4eQ2kgXLFo4"
+            lat = util.getLocation(key,name,"lat")
+            lgn = util.getLocation(key,name,"lng")
 
             if lat and lgn:
 
