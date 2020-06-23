@@ -3,7 +3,9 @@ import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:mobile_healthcare/common/styles/colors.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/presentation/screen/favorites_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/home_screen.dart';
+import 'package:mobile_healthcare/presentation/screen/seen_recently_screen.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -20,9 +22,9 @@ class Phone extends StatefulWidget {
 class _PhoneState extends BaseState<Phone> {
   int _selectedIndex = 1;
   final List<Widget> _widgetOptions = <Widget>[
-    Container(),
+    FavoritesScreen(),
     HomeScreen(),
-    Container(),
+    SeenRecentlyScreen(),
   ];
 
   void _onItemTapped(int index) {

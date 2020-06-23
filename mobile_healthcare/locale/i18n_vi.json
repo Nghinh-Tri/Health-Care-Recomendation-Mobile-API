@@ -6,5 +6,10 @@
     "search_bar_placeholder": "Nhập triệu chứng, khoa, ...",
     "emergency_button_label": "Nhấn giữ để gọi khẩn cấp!",
     "logout": "Đăng xuất",
-    "username": "Tên người dùng"
+    "username": "Tên người dùng",
+    "test_distance": "1000 m",
+    "test_facility_name": "Chaldea",
+    "test_facility_address": "At the end of the world",
+    "test_facility_workhour": "24/24",
+    "test_facility_status": "Open"
 }
