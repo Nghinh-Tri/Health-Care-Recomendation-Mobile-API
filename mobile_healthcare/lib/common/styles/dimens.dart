@@ -1,6 +1,7 @@
 //Define ALL dimens here
 class Dimens {
   //static const size0 = 0.0;
+  static const size5 = 5.0;
   static const size7 = 7.0;
   static const size10 = 10.0;
   static const size12 = 12.0;
@@ -8,6 +9,7 @@ class Dimens {
   static const size25 = 25.0;
   static const size30 = 30.0;
   static const size60 = 60.0;
+  static const size100 = 100.0;
   static const size120 = 120.0;
   static const size150 = 150.0;
 
