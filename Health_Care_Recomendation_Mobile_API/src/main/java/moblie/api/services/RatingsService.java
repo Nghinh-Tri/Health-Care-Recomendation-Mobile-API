@@ -12,17 +12,17 @@ import moblie.api.repositories.RatingsRespository;
 public class RatingsService {
 
 	@Autowired
-	private RatingsRespository respository;
+	private RatingsRespository ratingsRespository;
 	
 	public void save(Ratings rating) {
-		respository.save(rating);
+		ratingsRespository.save(rating);
 	}
 	
 	public List<Ratings> loadRatings(int facilityID){
-		return respository.loadRatings(facilityID);
+		return ratingsRespository.loadRatings(facilityID);
 	}
 	
 	public Ratings isExist(String phone, int facilityID) {
-		return respository.isExist(phone, facilityID);
+		return ratingsRespository.isExist(phone, facilityID);
 	}
 }
