@@ -7,6 +7,7 @@ import 'package:mobile_healthcare/dependencies.dart';
 import 'package:mobile_healthcare/home.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_bloc.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_state.dart';
+import 'package:mobile_healthcare/presentation/screen/user_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -60,7 +61,8 @@ class MyApp extends StatelessWidget {
 
   Map<String, WidgetBuilder> buildRoutes(){
     return {
-      '/': (context) => Home(),
+      // '/': (context) => Home(),
+      '/': (context) => UserScreen(),
     };
   }
 }

@@ -5,9 +5,11 @@ class Dimens {
   static const size7 = 7.0;
   static const size10 = 10.0;
   static const size12 = 12.0;
+  static const size15 = 15.0;
   static const size20 = 20.0;
   static const size25 = 25.0;
   static const size30 = 30.0;
+  static const size50 = 50.0;
   static const size60 = 60.0;
   static const size100 = 100.0;
   static const size120 = 120.0;
@@ -25,7 +27,7 @@ class Dimens {
   static const radius3 = 3.0;
 
   /* Appbar */
-  static const appbarHeight = 50.0;
+  static const appbarHeight = 55.0;
 
   /* Drawer */
   static const drawHeaderHeight = 140.0;

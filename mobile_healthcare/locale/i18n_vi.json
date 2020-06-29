@@ -11,5 +11,12 @@
     "test_facility_name": "Chaldea",
     "test_facility_address": "At the end of the world",
     "test_facility_workhour": "24/24",
-    "test_facility_status": "Open"
+    "test_facility_status": "Open",
+    "user": "Thông tin người dùng",
+    "user_info": "Thông tin của tôi",
+    "user_fullname": "Họ tên",
+    "user_phone": "Điện thoại",
+    "user_edit": "Cập nhật",
+    "user_save": "Lưu",
+    "user_birthday": "Ngày sinh"
 }

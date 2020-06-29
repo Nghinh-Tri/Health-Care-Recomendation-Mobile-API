@@ -13,4 +13,5 @@ class CustomColors {
   static const lineNavigationBottom = Color.fromRGBO(127, 127, 127, 1);
   static const emergencyButton = Color.fromRGBO(220, 20, 60, 1);
   static const phoneIcon = Color.fromRGBO(255, 250, 250, 1);
+  static const editButtonColor = Color.fromRGBO(34, 139, 34, 1);
 }
