@@ -7,6 +7,9 @@ import 'package:mobile_healthcare/dependencies.dart';
 import 'package:mobile_healthcare/home.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_bloc.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_state.dart';
+import 'package:mobile_healthcare/presentation/screen/facility_detail_screen.dart';
+import 'package:mobile_healthcare/presentation/screen/login_screen.dart';
+import 'package:mobile_healthcare/presentation/screen/rating_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/user_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -55,14 +58,17 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  String getInitialRoute(){
+  String getInitialRoute() {
     return '/';
   }
 
-  Map<String, WidgetBuilder> buildRoutes(){
+  Map<String, WidgetBuilder> buildRoutes() {
     return {
-      // '/': (context) => Home(),
-      '/': (context) => UserScreen(),
+      //'/': (context) => Home(),
+      //'/': (context) => UserScreen(),
+      //'/': (context) => FacilityDetailScreen(),
+      //'/': (context) => RatingScreen(),
+      '/': (context) => LoginScreen(),
     };
   }
 }

@@ -18,5 +18,17 @@
     "user_phone": "Điện thoại",
     "user_edit": "Cập nhật",
     "user_save": "Lưu",
-    "user_birthday": "Ngày sinh"
+    "user_birthday": "Ngày sinh",
+    "facility_overview": "Giới thiệu",
+    "facility_detail": "Thông tin",
+    "facility_rating": "Thêm",
+    "facility_user_rating" : "Người dùng đánh giá",
+    "facility_address": "Địa chỉ",
+    "facility_phone": "Điện thoại liên hệ",
+    "rating_title": "Bạn đánh giá chúng tôi thế nào?",
+    "rating_button_title": "Đánh giá",
+    "login_title": "Đăng nhập",
+    "login_phone": "Số điện thoại",
+    "login_password": "Mật khẩu",
+    "signup": "Đăng ký"
 }
