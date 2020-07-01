@@ -7,7 +7,7 @@ class CustomColors {
   static const cardColor = Color.fromRGBO(254, 255, 254, 1);
   static const backgroundAppBarColor = Color.fromRGBO(255, 255, 255, 1);
   static const backgroundColor = Color.fromRGBO(239, 239, 244, 1);
-  static const accentColor = Color.fromRGBO(103, 145, 244, 1);
+  static const accentColor = Color.fromRGBO(34, 139, 34, 1);
   static const primaryColor = Color.fromRGBO(50, 205, 50, 1);
   static const bottomNavigationSelectedButtonColor = Color.fromRGBO(50, 205, 50, 1);
   static const lineNavigationBottom = Color.fromRGBO(127, 127, 127, 1);
