@@ -121,12 +121,17 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
           ),
         ),
         if (isVisible)
-          FlatButton(
-            onPressed: () => {},
-            child: Text(
-              translator.text("facility_rating"),
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
+          GestureDetector(
+            onTap: () => {},
+            child: Padding(
+              padding: const EdgeInsets.only(
+                right: Dimens.size20,
+              ),
+              child: Text(
+                translator.text("facility_rating"),
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
           ),

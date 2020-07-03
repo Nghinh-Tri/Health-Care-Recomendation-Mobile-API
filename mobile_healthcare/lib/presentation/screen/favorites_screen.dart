@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/presentation/widgets/common/app_bar.dart';
-import 'package:mobile_healthcare/presentation/widgets/common/facility_card.dart';
+import 'package:mobile_healthcare/presentation/widgets/common/facility_card_custom.dart';
 
 class FavoritesScreen extends BaseStatelessWidget {
   @override
@@ -17,7 +17,7 @@ class FavoritesScreen extends BaseStatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          FacilityCard(),
+          FacilityCardCustom(),
         ],
       ),
     );

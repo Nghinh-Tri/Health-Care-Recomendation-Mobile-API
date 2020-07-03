@@ -14,7 +14,7 @@ class _RatingState extends BaseState<Rating> {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(
-        vertical: Dimens.size5,
+        vertical: Dimens.size10,
         horizontal: Dimens.size20,
       ),
       padding: const EdgeInsets.symmetric(

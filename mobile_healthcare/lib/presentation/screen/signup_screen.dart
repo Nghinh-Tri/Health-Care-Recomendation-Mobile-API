@@ -3,9 +3,10 @@ import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/presentation/widgets/common/border_button.dart';
 
-class LoginScreen extends BaseStatelessWidget {
+class SignUpScreen extends BaseStatelessWidget {
   var userPhone = TextEditingController();
   var userPassword = TextEditingController();
+  var repeatPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class LoginScreen extends BaseStatelessWidget {
         preferredSize: const Size.fromHeight(Dimens.appbarHeight),
       ),
       body: Container(
-        height: Dimens.loginBoxHeight,
+        height: Dimens.signupBoxHeight,
         margin: const EdgeInsets.only(
           left: Dimens.size70,
           right: Dimens.size70,
@@ -41,17 +42,22 @@ class LoginScreen extends BaseStatelessWidget {
               label: translator.text("login_password"),
               controller: userPassword,
             ),
+            _passwordRow(
+              context: context,
+              icon: Icons.lock,
+              label: translator.text("signup_repeat_password"),
+              controller: repeatPassword,
+            ),
             Padding(
               padding: const EdgeInsets.only(
                 top: Dimens.size5,
               ),
               child: BorderButton(
-                title: translator.text("login_title"),
+                title: translator.text("signup"),
                 color: Theme.of(context).accentColor,
                 width: Dimens.loginButtonWidth,
               ),
             ),
-            _signUpButton(context),
           ],
         ),
       ),
@@ -86,11 +92,11 @@ class LoginScreen extends BaseStatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                left: Dimens.size110,
+                left: Dimens.size120,
                 top: Dimens.size12,
               ),
               child: Text(
-                translator.text("login_title"), //for testing
+                translator.text("signup"), //for testing
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
                   fontSize: Dimens.size20,
@@ -171,23 +177,6 @@ class LoginScreen extends BaseStatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _signUpButton(BuildContext context) {
-    return GestureDetector(
-      onTap: () => {},
-      child: Padding(
-        padding: const EdgeInsets.only(
-          top: Dimens.size5,
-        ),
-        child: Text(
-          translator.text("signup"),
-          style: TextStyle(
-            color: Theme.of(context).primaryColor,
-          ),
-        ),
       ),
     );
   }

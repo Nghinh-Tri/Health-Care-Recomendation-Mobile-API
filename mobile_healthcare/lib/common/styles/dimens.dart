@@ -15,8 +15,10 @@ class Dimens {
   static const size50 = 50.0;
   static const size60 = 60.0;
   static const size70 = 70.0;
+  static const size90 = 90.0;
   static const size100 = 100.0;
   static const size110 = 110.0;
+  static const size115 = 115.0;
   static const size120 = 120.0;
   static const size150 = 150.0;
 
@@ -34,6 +36,7 @@ class Dimens {
 
   /* Appbar */
   static const appbarHeight = 55.0;
+  static const searchAppbarHeight = 100.0;
 
   /* Drawer */
   static const drawHeaderHeight = 140.0;
@@ -54,5 +57,6 @@ class Dimens {
   static const loginButtonWidth = 250.0;
 
   /* Box */
-  static const loginBoxHeight = 200.0;
+  static const loginBoxHeight = 185.0;
+  static const signupBoxHeight = 205.0;
 }
