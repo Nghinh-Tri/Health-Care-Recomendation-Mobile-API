@@ -20,7 +20,6 @@ class FacilityCard extends BaseStatelessWidget {
         children: <Widget>[
           _leftColumn(),
           _centerColumn(),
-          _rightColumn(),
         ],
       ),
     );
@@ -81,15 +80,6 @@ class FacilityCard extends BaseStatelessWidget {
             child: Text(content),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _rightColumn() {
-    return Expanded(
-      child: IconButton(
-        icon: Icon(Icons.close),
-        onPressed: () => {},
       ),
     );
   }

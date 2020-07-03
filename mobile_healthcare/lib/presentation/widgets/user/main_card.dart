@@ -182,7 +182,12 @@ class _MainCardState extends BaseState<MainCard> {
               style: Theme.of(context).textTheme.headline5,
             ),
             Spacer(),
-            Icon(Icons.arrow_forward),
+            Padding(
+              padding: const EdgeInsets.only(
+                right: Dimens.size10,
+              ),
+              child: Icon(Icons.arrow_forward),
+            ),
           ],
         ),
       ),

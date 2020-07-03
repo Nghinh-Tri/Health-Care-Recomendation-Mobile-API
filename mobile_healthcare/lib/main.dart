@@ -10,6 +10,9 @@ import 'package:mobile_healthcare/common/theme/theme_app/theme_state.dart';
 import 'package:mobile_healthcare/presentation/screen/facility_detail_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/login_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/rating_screen.dart';
+import 'package:mobile_healthcare/presentation/screen/search_result_screen.dart';
+import 'package:mobile_healthcare/presentation/screen/search_screen.dart';
+import 'package:mobile_healthcare/presentation/screen/signup_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/user_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -64,11 +67,14 @@ class MyApp extends StatelessWidget {
 
   Map<String, WidgetBuilder> buildRoutes() {
     return {
-      //'/': (context) => Home(),
+      '/': (context) => Home(),
       //'/': (context) => UserScreen(),
       //'/': (context) => FacilityDetailScreen(),
       //'/': (context) => RatingScreen(),
-      '/': (context) => LoginScreen(),
+      //'/': (context) => LoginScreen(),
+      //'/': (context) => SignUpScreen(),
+      //'/': (context) => SearchScreen(),
+      //'/': (context) => SearchResultScreen(),
     };
   }
 }

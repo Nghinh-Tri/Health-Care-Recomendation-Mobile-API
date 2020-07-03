@@ -30,5 +30,8 @@
     "login_title": "Đăng nhập",
     "login_phone": "Số điện thoại",
     "login_password": "Mật khẩu",
-    "signup": "Đăng ký"
+    "signup_repeat_password": "Nhập lại mật khẩu",
+    "signup": "Đăng ký",
+    "cancel": "Hủy",
+    "search_result": "Kết quả tìm kiếm"
 }
