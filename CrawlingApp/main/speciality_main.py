@@ -3,6 +3,9 @@ import os.path
 from bs4 import BeautifulSoup
 from connection import connection
 import logging
+import pandas as pd
+import googletrans
+from googletrans import Translator
 
 logger = logging.Logger('catch_all')
 
@@ -10,7 +13,7 @@ if __name__ == '__main__':
     try:
         set = set()
         link = 'https://www.aamc.org/cim/explore-options/specialty-profiles'
-        file = 'C:\\Users\\SE130511\\git\\Health-Care-Recomendation-Mobile-API\\CrawlingApp\\MD.html'
+        file = 'E:\Health Care Recomendation Mobile API\CrawlingApp\\MD.html'
 
         if (os.path.isfile(file) == False):
             util.writeHtmlFile(link, file)

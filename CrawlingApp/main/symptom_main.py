@@ -3,6 +3,7 @@ import os.path
 from bs4 import BeautifulSoup
 from connection import connection
 import logging
+from googletrans import Translator
 
 logger = logging.Logger('catch_all')
 
@@ -15,6 +16,7 @@ def get_specialty(symptom_url):
     return specialty.string
 
 set = set()
+translator=Translator()
 try:
     url='https://en.wikipedia.org/wiki/List_of_medical_symptoms'
     text=util.getHtml(url)
@@ -23,9 +25,11 @@ try:
         href='https://en.wikipedia.org'+link.get('href')
         title=link.get('title')
         print(title)
+        json=translator.translate(title, dest='vi').text
+        print(json)
         set.add(title)
-    for x in set:
-        connection.insertSymp(x)
+    #for x in set:
+        #connection.insertSymp(x)
 
 except:
     print("error")
