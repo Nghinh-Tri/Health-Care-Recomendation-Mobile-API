@@ -67,14 +67,14 @@ class MyApp extends StatelessWidget {
 
   Map<String, WidgetBuilder> buildRoutes() {
     return {
-      '/': (context) => Home(),
-      //'/': (context) => UserScreen(),
-      //'/': (context) => FacilityDetailScreen(),
-      //'/': (context) => RatingScreen(),
-      //'/': (context) => LoginScreen(),
-      //'/': (context) => SignUpScreen(),
-      //'/': (context) => SearchScreen(),
-      //'/': (context) => SearchResultScreen(),
+      // '/': (context) => Home(),
+      // '/': (context) => UserScreen(),
+      // '/': (context) => FacilityDetailScreen(),
+      // '/': (context) => RatingScreen(),
+      // '/': (context) => LoginScreen(),
+      // '/': (context) => SignUpScreen(),
+      // '/': (context) => SearchScreen(),
+      '/': (context) => SearchResultScreen(),
     };
   }
 }
