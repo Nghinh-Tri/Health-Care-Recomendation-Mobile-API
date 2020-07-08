@@ -56,6 +56,7 @@ public class UsersController {
 					&& users.getFullname().trim().length() > 0 && users.getRoles().trim().length() > 0) {
 				Users find = service.isExist(users.getPhone());
 				if (find == null) {
+					users.setRoles("user");
 					service.save(users);
 					return new ResponseEntity<Users>(HttpStatus.OK);
 				}

@@ -42,7 +42,6 @@ public class RecommendationsController {
 			if (recommendation.getSuggestedPhone().trim().length() > 0) {
 				String userPhone = recommendation.getSuggestedPhone();
 				List<Recommendations> recommendations = service.getRecommendations(userPhone);
-				System.out.print(recommendations.isEmpty());
 				if (!recommendations.isEmpty()) {
 					return new ResponseEntity<List<Recommendations>>(recommendations, HttpStatus.OK);
 				}

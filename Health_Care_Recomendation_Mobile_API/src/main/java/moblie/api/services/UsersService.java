@@ -9,7 +9,7 @@ import moblie.api.entities.Users;
 import moblie.api.repositories.UsersRepository;
 
 @Service
-public class UsersService {
+public class UsersService{
 
 	@Autowired
 	private UsersRepository usersRepository;

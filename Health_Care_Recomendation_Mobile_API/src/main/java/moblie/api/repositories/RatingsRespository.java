@@ -12,10 +12,10 @@ import moblie.api.entities.Ratings;
 public interface RatingsRespository extends JpaRepository<Ratings, String> {
 	
 	@Query(value="select * from ratings r where r.facility_id=?1 order by r.id desc limit 3", nativeQuery = true)
-	public List<Ratings> loadRatings(int facilityID);
+	List<Ratings> loadRatings(int facilityID);
 	
 	@Query(value="select * from ratings r where r.user_id=?1 and r.facility_id=?2", nativeQuery = true)
-	public Ratings isExist(String phone, int facilityID);
+	Ratings isExist(String phone, int facilityID);
 	
 	
 }

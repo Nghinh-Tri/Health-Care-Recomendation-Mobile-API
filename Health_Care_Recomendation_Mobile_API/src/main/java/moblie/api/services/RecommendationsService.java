@@ -12,17 +12,17 @@ import moblie.api.repositories.RecommendationsRespository;
 public class RecommendationsService {
 
 	@Autowired
-	private RecommendationsRespository respository;
+	private RecommendationsRespository recommendationsRespository;
 
 	public void save(Recommendations recommendation) {
-		respository.save(recommendation);
+		recommendationsRespository.save(recommendation);
 	}
 	
 	public List<Recommendations> getRecommendations(String userPhone) {
-		return respository.getRecommendations(userPhone);
+		return recommendationsRespository.getRecommendations(userPhone);
 	}
 	
 	public void changeRecommendationsStatus(String userPhone) {
-		respository.changeRecommendationsStatus(userPhone);
+		recommendationsRespository.changeRecommendationsStatus(userPhone);
 	}
 }
