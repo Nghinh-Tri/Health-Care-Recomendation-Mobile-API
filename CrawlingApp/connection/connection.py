@@ -34,3 +34,61 @@ def checkDupplicate(name):
         if connection.is_connected():
             mycursor.close()
             connection.close()
+
+def insertSpec(speciality):
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            if not checkDuplicateSpec(speciality):
+                sql = "INSERT INTO specialities (speciality,status,translation) value (%s,%s,%s)"
+                val = (speciality,"0","")
+                mycursor.execute(sql, val)
+                connection.commit()
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()
+
+def insertSymp(symptom):
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            if not checkDuplicateSymp(symptom):
+                sql = "INSERT INTO symptoms (symptom,translation ) value (%s,%s)"
+                val = (symptom,"")
+                mycursor.execute(sql, val)
+                connection.commit()
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()
+
+def checkDuplicateSymp(symptom):
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            sql = "select symptom from symptoms where symptom = %s"
+            mycursor.execute(sql,(symptom,))
+            result = mycursor.fetchall()
+            return result
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()
+
+def checkDuplicateSpec(speciality):
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            sql = "select speciality from specialities where speciality = %s"
+            mycursor.execute(sql,(speciality,))
+            result = mycursor.fetchall()
+            return result
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()

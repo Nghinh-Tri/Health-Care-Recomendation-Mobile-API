@@ -9,7 +9,7 @@ logger = logging.Logger('catch_all')
 if __name__ == '__main__':
     try:
         link = 'http://www.medinet.gov.vn/DSDonvi.aspx?codekhoi=BVTP'
-        file = 'E:\\Python\\CrawlingApp\\SoYTe.html'
+        file = 'C:\\Users\\SE130511\\git\\Health-Care-Recomendation-Mobile-API\\CrawlingApp\\SoYTe.html'
 
         if(os.path.isfile(file) == False):
             util.writeHtmlFile(link,file)
