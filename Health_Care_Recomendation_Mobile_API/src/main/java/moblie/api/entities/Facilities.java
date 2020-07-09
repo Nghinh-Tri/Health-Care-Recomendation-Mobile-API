@@ -12,7 +12,6 @@ public class Facilities {
     private String phone;
     private double latitude;
     private double longtitude;
-    private int status;
     private String image;
 
     public Facilities() {
@@ -64,14 +63,6 @@ public class Facilities {
 
     public void setLongtitude(double longtitude) {
         this.longtitude = longtitude;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public String getImage() {

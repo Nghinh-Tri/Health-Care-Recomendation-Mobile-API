@@ -24,7 +24,7 @@ public class SymptomController {
     @PostMapping("/symptoms")
     public ResponseEntity<?> searchSymptomsByName(@RequestBody Symptoms symptom) {
         try {
-            List<Symptoms> result = symptomService.getListSymptomsByName(symptom.getSymptom());
+            List<Symptoms> result = symptomService.getListSymptomsByName(symptom.getTranslation());
             if (result != null)
                 return new ResponseEntity<List<Symptoms>>(result, HttpStatus.OK);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

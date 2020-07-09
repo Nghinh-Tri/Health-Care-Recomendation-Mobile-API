@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface SymptomsRepository extends JpaRepository<Symptoms, Integer> {
 
-    @Query(value = "Select * from symptoms where symptom like %?1% and status = 1", nativeQuery = true)
+    @Query(value = "Select * from symptoms where translation like %?1%", nativeQuery = true)
     List<Symptoms> getListSymptomsByName(String symptom);
 }

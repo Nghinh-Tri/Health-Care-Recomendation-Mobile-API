@@ -9,10 +9,15 @@ import java.util.List;
 
 @Service
 public class FacilitiesDetailsService {
+
     @Autowired
     private FacilitiesDetailsRepository facilitiesDetailsRepository;
 
-    public List<Facilitiesdetails> getFacilitiesBySpecility(int id){
-        return getFacilitiesBySpecility(id);
+    public List<Facilitiesdetails> getFacilitiesBySpeciality(int specialityID){
+        return facilitiesDetailsRepository.getFacilitiesBySpeciality(specialityID);
+    }
+
+    public List<Facilitiesdetails> getFacilitiesBySimptom(int symptomID){
+        return facilitiesDetailsRepository.getFacilitiesBySymptom(symptomID);
     }
 }

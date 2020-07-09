@@ -16,10 +16,22 @@ public class FacilitiesDetailsController {
     @Autowired
     private FacilitiesDetailsService facilitiesDetailsService;
 
-    @PostMapping("/facilities-details")
-    public ResponseEntity<?> getFacilitiesBySpecility(@RequestBody Facilitiesdetails facilitiesdetails){
+    @PostMapping("/facilities-details/speciality")
+    public ResponseEntity<?> getFacilitiesBySpeciality(@RequestBody Facilitiesdetails facilitiesdetails){
         try{
-            List<Facilitiesdetails> result = facilitiesDetailsService.getFacilitiesBySpecility(facilitiesdetails.getSpecilitydetail_id());
+            List<Facilitiesdetails> result = facilitiesDetailsService.getFacilitiesBySpeciality(facilitiesdetails.getSpeciality_id());
+            if (result != null)
+                return new ResponseEntity<List<Facilitiesdetails>>(result, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/facilities-details/symptom")
+    public ResponseEntity<?> getFacilitiesBySimptom(@RequestBody Facilitiesdetails facilitiesdetails){
+        try{
+            List<Facilitiesdetails> result = facilitiesDetailsService.getFacilitiesBySimptom(facilitiesdetails.getSymptom_id());
             if (result != null)
                 return new ResponseEntity<List<Facilitiesdetails>>(result, HttpStatus.OK);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
