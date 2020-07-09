@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface SpecialitiesRepository extends JpaRepository<Specialities,Integer> {
-    @Query(value = "Select * from specialities where speciality like %?1% and status = 1", nativeQuery = true)
+    @Query(value = "Select * from specialities where translation like %?1%", nativeQuery = true)
     List<Specialities> getListSpecialitiesByName(String speciality);
 }

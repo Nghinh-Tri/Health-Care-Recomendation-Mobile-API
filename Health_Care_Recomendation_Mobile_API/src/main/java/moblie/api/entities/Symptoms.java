@@ -8,25 +8,9 @@ public class Symptoms {
     @Id
     private int id;
     private String symptom;
-    private int status;
+    private String translation;
 
     public Symptoms() {
-    }
-
-    public String getSymptom() {
-        return symptom;
-    }
-
-    public void setSymptom(String symptom) {
-        this.symptom = symptom;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public int getId() {
@@ -36,4 +20,12 @@ public class Symptoms {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getSymptom() { return symptom; }
+
+    public void setSymptom(String symptom) { this.symptom = symptom; }
+
+    public String getTranslation() { return translation; }
+
+    public void setTranslation(String translation) { this.translation = translation; }
 }

@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface FacilitiesDetailsRepository extends JpaRepository<Facilitiesdetails,Integer> {
 
-    @Query(value = "select * from facilitiesdetails where specilitydetail_id = ?1 and status = 1",nativeQuery = true)
-    List<Facilitiesdetails> getFacilitiesBySpecility(int id);
+    @Query(value = "select * from facilitiesdetails where speciality_id = ?1",nativeQuery = true)
+    List<Facilitiesdetails> getFacilitiesBySpeciality(int specialityID);
+
+    @Query(value = "select * from facilitiesdetails where symptom_id = ?1",nativeQuery = true)
+    List<Facilitiesdetails> getFacilitiesBySymptom(int simptomID);
 }

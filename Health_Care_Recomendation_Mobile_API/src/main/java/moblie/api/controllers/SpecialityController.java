@@ -17,10 +17,15 @@ public class SpecialityController {
     @Autowired
     private SpecialityService specialityService;
 
+    @GetMapping("/specialities")
+    public List<Specialities> listSymptom() {
+        return specialityService.listAll();
+    }
+
     @PostMapping("/specialities")
     public ResponseEntity<?> searchSpecialitiesByName(@RequestBody Specialities specialities) {
         try {
-            List<Specialities> result = specialityService.getListSpecialitiesByName(specialities.getSpeciality());
+            List<Specialities> result = specialityService.getListSpecialitiesByName(specialities.getTranslation());
             if (result != null)
                 return new ResponseEntity<List<Specialities>>(result, HttpStatus.OK);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -9,7 +9,7 @@ public class Specialities {
     @Id
     private int id;
     private String speciality;
-    private int status;
+    private String translation;
 
     public Specialities() {
     }
@@ -30,11 +30,7 @@ public class Specialities {
         this.speciality = speciality;
     }
 
-    public int getStatus() {
-        return status;
-    }
+    public String getTranslation() { return translation; }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+    public void setTranslation(String translation) { this.translation = translation; }
 }
