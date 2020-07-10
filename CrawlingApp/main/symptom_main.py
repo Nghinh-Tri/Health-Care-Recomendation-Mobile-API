@@ -1,5 +1,4 @@
 from util import util
-import os.path
 from bs4 import BeautifulSoup
 from connection import connection
 import logging
@@ -24,12 +23,12 @@ try:
     for link in soup.select('html body div div div div div ul li > a'):
         href='https://en.wikipedia.org'+link.get('href')
         title=link.get('title')
-        print(title)
-        json=translator.translate(title, dest='vi').text
-        print(json)
         set.add(title)
-    #for x in set:
-        #connection.insertSymp(x)
+    for x in set:
+        print(x)
+        trans = translator.translate(x, dest='vi').text
+        print(trans)
+        connection.insertSymp(x,trans)
 
 except:
     print("error")

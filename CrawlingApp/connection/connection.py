@@ -1,5 +1,5 @@
 import mysql.connector
-
+# install package mysql python connector
 def connect():
     return mysql.connector.connect(host='localhost',
                                          database='healthcaredb',
@@ -35,14 +35,14 @@ def checkDupplicate(name):
             mycursor.close()
             connection.close()
 
-def insertSpec(speciality):
+def insertSpec(speciality,translation):
     try:
         connection = connect()
         if connection.is_connected():
             mycursor = connection.cursor()
             if not checkDuplicateSpec(speciality):
-                sql = "INSERT INTO specialities (speciality,status,translation) value (%s,%s,%s)"
-                val = (speciality,"0","")
+                sql = "INSERT INTO specialities (speciality,translation) value (%s,%s)"
+                val = (speciality,translation)
                 mycursor.execute(sql, val)
                 connection.commit()
     finally:
@@ -50,14 +50,14 @@ def insertSpec(speciality):
             mycursor.close()
             connection.close()
 
-def insertSymp(symptom):
+def insertSymp(symptom,translation):
     try:
         connection = connect()
         if connection.is_connected():
             mycursor = connection.cursor()
             if not checkDuplicateSymp(symptom):
                 sql = "INSERT INTO symptoms (symptom,translation ) value (%s,%s)"
-                val = (symptom,"")
+                val = (symptom,translation)
                 mycursor.execute(sql, val)
                 connection.commit()
     finally:
