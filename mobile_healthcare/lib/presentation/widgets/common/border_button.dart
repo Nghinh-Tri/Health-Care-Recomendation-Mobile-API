@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 
 class BorderButton extends StatefulWidget {
-  const BorderButton({@required this.title, @required this.color, this.width});
+  const BorderButton(
+      {@required this.title,
+      @required this.color,
+      this.width,
+      @required this.function});
 
   final String title;
   final Color color;
   final double width;
+  final Function function;
 
   @override
   _BorderButtonState createState() => _BorderButtonState();
@@ -36,7 +41,7 @@ class _BorderButtonState extends State<BorderButton> {
           });
         },
         child: FlatButton(
-          onPressed: () {}, //Event goes here
+          onPressed: widget.function, //Event goes here
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(Dimens.size18),
             side: BorderSide(color: widget.color),
