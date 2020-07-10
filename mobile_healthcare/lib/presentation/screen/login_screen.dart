@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/user/login/login_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/user/login/login_event.dart';
 import 'package:mobile_healthcare/presentation/widgets/common/border_button.dart';
 
 class LoginScreen extends BaseStatelessWidget {
@@ -9,6 +12,13 @@ class LoginScreen extends BaseStatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _onLoginButtonPressed() {
+      BlocProvider.of<LoginBloc>(context).add(
+        LoginButtonPressed(phone: userPhone.text, passwords: userPassword.text),
+      );
+      Navigator.pop(context);
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: PreferredSize(
@@ -49,6 +59,7 @@ class LoginScreen extends BaseStatelessWidget {
                 title: translator.text("login_title"),
                 color: Theme.of(context).accentColor,
                 width: Dimens.loginButtonWidth,
+                function: _onLoginButtonPressed,
               ),
             ),
             _signUpButton(context),
@@ -82,7 +93,7 @@ class LoginScreen extends BaseStatelessWidget {
                 size: Dimens.size30,
               ),
               color: Theme.of(context).cardColor,
-              onPressed: () => {},
+              onPressed: () => {Navigator.pop(context)},
             ),
             Padding(
               padding: const EdgeInsets.only(
