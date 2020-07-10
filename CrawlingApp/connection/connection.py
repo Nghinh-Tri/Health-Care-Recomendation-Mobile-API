@@ -79,6 +79,34 @@ def checkDuplicateSymp(symptom):
             mycursor.close()
             connection.close()
 
+def getAllSymptom():
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            sql = "select * from symptoms"
+            mycursor.execute(sql)
+            result = mycursor.fetchall()
+            return result
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()
+
+def getSpecialitiesByName(name):
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            sql = "select * from specialities where speciality = %s"
+            mycursor.execute(sql,(name,))
+            result = mycursor.fetchall()
+            return result
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()
+
 def checkDuplicateSpec(speciality):
     try:
         connection = connect()

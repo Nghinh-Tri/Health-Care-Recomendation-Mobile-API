@@ -6,13 +6,13 @@ import logging
 from googletrans import Translator
 
 logger = logging.Logger('catch_all')
+set = set()
+translator=Translator()
+def getSpec():
+    # try:
 
-if __name__ == '__main__':
-    try:
-        set = set()
-        translator=Translator()
         link = 'https://www.aamc.org/cim/explore-options/specialty-profiles'
-        file = 'C:\\Users\\SE130511\\git\\Health-Care-Recomendation-Mobile-API\\CrawlingApp\\MD.html'
+        file = 'E:\\Health Care Recomendation Mobile API\\CrawlingApp\\MD.html'
 
         if (os.path.isfile(file) == False):
             util.writeHtmlFile(link, file)
@@ -27,7 +27,8 @@ if __name__ == '__main__':
             trans = translator.translate(x, dest='vi').text
             print(trans)
             connection.insertSpec(str(x),trans)
-    except:
-        print("error")
-        logger.error()
+    # except:
+    #     print("error")
+    #     logger.error
 
+getSpec()
