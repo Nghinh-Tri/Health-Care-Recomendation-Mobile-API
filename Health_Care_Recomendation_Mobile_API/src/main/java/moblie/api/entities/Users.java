@@ -10,7 +10,7 @@ public class Users {
 	private String phone;
 	private String fullname;
 	private String passwords;
-	private int age;
+	private String dob;
 	private String roles;
 
 	public Users() {
@@ -41,12 +41,12 @@ public class Users {
 		this.passwords = passwords;
 	}
 
-	public int getAge() {
-		return age;
+	public String getDob() {
+		return dob;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setDob(String dob) {
+		this.dob = dob;
 	}
 
 	public String getRoles() {

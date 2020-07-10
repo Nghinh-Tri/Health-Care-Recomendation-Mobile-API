@@ -56,7 +56,6 @@ public class RatingsController {
 	@PutMapping("/ratings/{information}")
 	public ResponseEntity<?> editRating(@RequestBody Ratings rating, @PathVariable String information) {
 		try {
-			information = information.replace("{", "").replace("}", "");
 			int pos = -1;
 			for (int i = 0; i < information.length(); i++) {
 				if (information.charAt(i) == '&')
