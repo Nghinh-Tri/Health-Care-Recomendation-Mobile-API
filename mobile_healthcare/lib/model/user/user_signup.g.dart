@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.dart';
+part of 'user_signup.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return User(
+UserSignUp _$UserSignUpFromJson(Map<String, dynamic> json) {
+  return UserSignUp(
     phone: json['phone'] as String,
     fullname: json['fullname'] as String,
-    passwords: json['passwords'] as String,
     dob: json['dob'] as String,
-    roles: json['roles'] as String,
+    passwords: json['passwords'] as String,
   );
 }
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+Map<String, dynamic> _$UserSignUpToJson(UserSignUp instance) =>
+    <String, dynamic>{
       'phone': instance.phone,
       'fullname': instance.fullname,
-      'passwords': instance.passwords,
       'dob': instance.dob,
-      'roles': instance.roles,
+      'passwords': instance.passwords,
     };

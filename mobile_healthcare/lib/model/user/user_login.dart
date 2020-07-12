@@ -5,8 +5,8 @@ part 'user_login.g.dart';
 
 @JsonSerializable()
 class UserLogin {
-  String phone;
-  String passwords;
+  final String phone;
+  final String passwords;
 
   UserLogin({
     @required this.phone,

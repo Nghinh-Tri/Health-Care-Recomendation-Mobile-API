@@ -10,6 +10,7 @@ import 'package:mobile_healthcare/logic/respository/user/UserRepos.dart';
 import 'package:mobile_healthcare/model/user/user.dart';
 import 'package:mobile_healthcare/presentation/screen/login_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile_healthcare/presentation/screen/user_screen.dart';
 
 class HomeDrawer extends BaseStatelessWidget {
   static final UserRepos userRepos = UserRepos(
@@ -47,15 +48,33 @@ class HomeDrawer extends BaseStatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
-                    child: Text(
-                      user != null
-                          ? user.fullname
-                          : translator.text("username"),
-                      style: TextStyle(
-                        color: Theme.of(context).cardColor,
-                        fontSize: Dimens.size20,
-                      ),
-                    ),
+                    child: user != null
+                        ? GestureDetector(
+                            onTap: () => {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (routeContext) => UserScreen(
+                                    user: user,
+                                  ),
+                                ),
+                              ),
+                            },
+                            child: Text(
+                              user.fullname,
+                              style: TextStyle(
+                                color: Theme.of(context).cardColor,
+                                fontSize: Dimens.size20,
+                              ),
+                            ),
+                          )
+                        : Text(
+                            translator.text("username"),
+                            style: TextStyle(
+                              color: Theme.of(context).cardColor,
+                              fontSize: Dimens.size20,
+                            ),
+                          ),
                   ),
                 ],
               ),

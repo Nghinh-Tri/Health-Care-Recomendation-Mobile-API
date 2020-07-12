@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:mobile_healthcare/model/user/user.dart';
 
 abstract class LoginState extends Equatable {
   @override
@@ -10,6 +8,8 @@ abstract class LoginState extends Equatable {
 
 class LoginInitial extends LoginState {}
 
+class LoginSuccess extends LoginState {}
+
 class LoginFailure extends LoginState {}
 
-class LoginInProgress extends LoginState {}
+class LoginLoading extends LoginState {}
