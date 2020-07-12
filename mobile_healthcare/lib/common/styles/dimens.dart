@@ -57,6 +57,6 @@ class Dimens {
   static const loginButtonWidth = 250.0;
 
   /* Box */
-  static const loginBoxHeight = 185.0;
-  static const signupBoxHeight = 205.0;
+  static const loginBoxHeight = 205.0;
+  static const signupBoxHeight = 285.0;
 }

@@ -1,20 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:mobile_healthcare/common/styles/colors.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_healthcare/logic/bloc/user/edit/edit_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/user/edit/edit_event.dart';
 import 'dart:ui' as ui;
+import 'package:mobile_healthcare/model/user/user.dart';
 
 class MainCard extends StatefulWidget {
+  final User user;
+
+  MainCard({@required this.user});
+
   @override
   _MainCardState createState() => _MainCardState();
 }
 
 class _MainCardState extends BaseState<MainCard> {
-  var isEnable = false;
+  var status = false; //Field's status
   var chosenDate = ""; //User's birthday
   var nameController = TextEditingController(); //User's fullname
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    nameController.text = widget.user.fullname;
+    chosenDate = widget.user.dob;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +57,7 @@ class _MainCardState extends BaseState<MainCard> {
           _numberRow(
             icon: Icons.phone,
             label: translator.text("user_phone"),
-            userPhone: "0123456789", // For testing only
+            userPhone: widget.user.phone,
           ),
           _textRow(
             icon: Icons.person,
@@ -49,7 +65,7 @@ class _MainCardState extends BaseState<MainCard> {
             controller: nameController,
           ),
           _dateRow(chosenDate),
-          isEnable
+          status
               ? _editButton(
                   icon: Icons.done,
                   label: translator.text("user_save"),
@@ -92,7 +108,7 @@ class _MainCardState extends BaseState<MainCard> {
                 border: InputBorder.none,
               ),
               textDirection: ui.TextDirection.ltr,
-              enabled: isEnable,
+              enabled: status,
               controller: controller,
               style: Theme.of(context).textTheme.headline5,
             ),
@@ -135,16 +151,18 @@ class _MainCardState extends BaseState<MainCard> {
   }
 
   Widget _dateRow(String date) {
+    final maxDay = DateTime.now().day;
+    final maxMonth = DateTime.now().month;
     final minYear = DateTime.now().year - 100;
     final maxYear = DateTime.now().year - 18;
     return GestureDetector(
-      onTap: isEnable
+      onTap: status
           ? () {
               DatePicker.showDatePicker(
                 context,
                 showTitleActions: true,
                 minTime: DateTime(minYear),
-                maxTime: DateTime(maxYear, 12, 31),
+                maxTime: DateTime(maxYear, maxMonth, maxDay),
                 onConfirm: (date) {
                   setState(() {
                     chosenDate = DateFormat("yyyy-MM-dd").format(date);
@@ -196,7 +214,18 @@ class _MainCardState extends BaseState<MainCard> {
 
   void isEdit() {
     setState(() {
-      isEnable = !isEnable;
+      if (status == true) {
+        BlocProvider.of<EditBloc>(context).add(
+          EditButtonPressed(
+            phone: widget.user.phone,
+            fullname: nameController.text,
+            dob: chosenDate,
+            passwords: widget.user.passwords,
+            roles: widget.user.roles,
+          ),
+        );
+      }
+      status = !status;
     });
   }
 

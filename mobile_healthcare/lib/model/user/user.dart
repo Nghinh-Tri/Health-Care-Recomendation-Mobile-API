@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -7,15 +8,15 @@ class User {
   final String phone;
   final String fullname;
   final String passwords;
-  final int age;
+  final String dob;
   final String roles;
 
   User({
-    this.phone,
-    this.fullname,
-    this.passwords,
-    this.age,
-    this.roles,
+    @required this.phone,
+    @required this.fullname,
+    @required this.passwords,
+    @required this.dob,
+    @required this.roles,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

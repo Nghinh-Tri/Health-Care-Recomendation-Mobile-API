@@ -33,5 +33,12 @@
     "signup_repeat_password": "Nhập lại mật khẩu",
     "signup": "Đăng ký",
     "cancel": "Hủy",
-    "search_result": "Kết quả tìm kiếm"
+    "search_result": "Kết quả tìm kiếm",
+    "phone_validate": "*SĐT không được trống",
+    "password_validate": "*Password không được trống",
+    "fullname_validate": "*Họ tên không được trống",
+    "login_failed": "SĐT hoặc mật khẩu không đúng",
+    "login_success": "Đăng nhập thành công. Nhấn BACK để quay lại",
+    "signup_failure": "Tài khoản đã tồn tại",
+    "signup_success": "Đăng ký thành công. Nhấn BACK để quay lại"
 }

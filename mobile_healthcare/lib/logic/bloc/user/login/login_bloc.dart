@@ -22,7 +22,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
     // TODO: implement mapEventToState
     if (event is LoginButtonPressed) {
-      yield LoginInProgress();
+      yield LoginLoading();
 
       try {
         final user = await repos.login(event.phone, event.passwords);
@@ -31,7 +31,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           authenBloc.add(
             AuthenticationLoggedIn(user: user),
           );
-          yield LoginInitial();
+          yield LoginSuccess();
         }
       } catch (_) {
         yield LoginFailure();
