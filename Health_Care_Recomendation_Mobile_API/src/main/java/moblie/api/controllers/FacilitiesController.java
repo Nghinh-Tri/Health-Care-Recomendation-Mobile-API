@@ -26,9 +26,10 @@ public class FacilitiesController {
     @PostMapping("/facilities")
     public ResponseEntity<?> getFacility(@RequestBody Facilities facilities){
         try {
-            Facilities result = facilitiesService.getFacilityById(facilities.getId());
-            if(result != null)
-                return new ResponseEntity<Facilities>(result, HttpStatus.OK);
+            Facilities facility = facilitiesService.getFacilityById(facilities.getId());
+            if(facility != null){
+                return new ResponseEntity<Facilities>(facility, HttpStatus.OK);
+            }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -36,13 +37,14 @@ public class FacilitiesController {
     }
 
     @GetMapping(value="/facilities")
-    public ResponseEntity<?> getFacilityEmergency() {
+    public ResponseEntity<?> getAllFacility() {
         try {
-            Map<String, List<Facilities>> map = new HashMap();
-            List<Facilities> result = facilitiesService.getAllFacilities();
-            map.put("result", result);
-            if(result != null)
-                return new ResponseEntity<Map<String, List<Facilities>>>(map, HttpStatus.OK);
+            Map<String, List<Facilities>> result = new HashMap<>();
+            List<Facilities> listFacilities = facilitiesService.getAllFacilities();
+            if(listFacilities != null){
+                result.put("facilities", listFacilities);
+                return new ResponseEntity<Map<String, List<Facilities>>>(result, HttpStatus.OK);
+            }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

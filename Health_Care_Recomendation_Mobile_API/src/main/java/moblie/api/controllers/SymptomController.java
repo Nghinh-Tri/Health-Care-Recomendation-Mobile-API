@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -24,9 +26,12 @@ public class SymptomController {
     @PostMapping("/symptoms")
     public ResponseEntity<?> searchSymptomsByName(@RequestBody Symptoms symptom) {
         try {
-            List<Symptoms> result = symptomService.getListSymptomsByName(symptom.getTranslation());
-            if (result != null)
-                return new ResponseEntity<List<Symptoms>>(result, HttpStatus.OK);
+            Map<String, List<Symptoms>> result = new HashMap<>();
+            List<Symptoms> listSymptom = symptomService.getListSymptomsByName(symptom.getTranslation());
+            if (listSymptom != null){
+                result.put("symptoms", listSymptom);
+                return new ResponseEntity<Map<String, List<Symptoms>>>(result, HttpStatus.OK);                
+            }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
