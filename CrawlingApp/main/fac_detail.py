@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 from util import util
 import logging
 from googletrans import Translator
+import validators
+import mysql.connector
 
 logger = logging.Logger('catch_all')
 translator = Translator()
@@ -18,18 +20,23 @@ def get_specialty(symptom):
             return connection.getSpecialitiesByName(i.get('title'))
 
 def findAllFacilities(url):
+    list = set()
     try:
         text=util.getHtml(url)
         soup=BeautifulSoup(text,'html.parser')
         for link in soup.select("h3 > a"):
             string=link.get('title')
-            print(string)
+            list.add(string)
+        # for x in list:
+        #     print(x)
+        return list
     except:
         print("error")
         logger.error()
 
 
 def getFacilitiesBySpec(speciality):
+    list=set()
     try:
         url='https://timbenhvien.vn/'
         text=util.getHtml(url)
@@ -42,13 +49,12 @@ def getFacilitiesBySpec(speciality):
                 if speciality in trans:
                     print("spec: " +trans)
                     print(href)
-                    # findAllFacilities(href)
-            # set.add(title)
-        # for x in set:
-        #     print(x)
-        #     trans = translator.translate(x, dest='vi').text
-        #     print(trans)
-        #     connection.insertSymp(x,trans)
+                    if validators.url(href):
+                        for x in findAllFacilities(href):
+                            if connection.getID(x):
+                                id=connection.getID(x)[0][0]
+                                list.add(id)
+        return list
     except:
         print("error")
         logger.error()
@@ -70,4 +76,5 @@ if __name__ == '__main__':
         else:
             specId = '229'
             speciality = 'General Surgery'
-        getFacilitiesBySpec(speciality)
+        for x in getFacilitiesBySpec(speciality):
+            connection.insertFacDetail(id,specId,x)

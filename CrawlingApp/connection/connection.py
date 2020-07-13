@@ -120,3 +120,46 @@ def checkDuplicateSpec(speciality):
         if connection.is_connected():
             mycursor.close()
             connection.close()
+
+def getID(facility):
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            sql = "select id from facilities where name like %s"
+            mycursor.execute(sql,(facility,))
+            result = mycursor.fetchall()
+            return result
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()
+
+def checkDuplicateFacDetail(sympID,specID,facID):
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            sql = "select facilitiesdetails_id from facilitiesdetails where (facility_id = %s and speciality_id = %s and symptom_id = %s)"
+            mycursor.execute(sql,(facID,specID,sympID))
+            result = mycursor.fetchall()
+            return result
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()
+
+def insertFacDetail(sympID,specID,facID):
+    try:
+        connection = connect()
+        if connection.is_connected():
+            mycursor = connection.cursor()
+            if not checkDuplicateFacDetail(sympID,specID,facID):
+                sql = "INSERT INTO facilitiesdetails (facility_id,speciality_id,symptom_id,status) value (%s,%s,%s,0)"
+                val = (facID,specID,sympID)
+                mycursor.execute(sql, val)
+                connection.commit()
+    finally:
+        if connection.is_connected():
+            mycursor.close()
+            connection.close()
