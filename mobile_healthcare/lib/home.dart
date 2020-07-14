@@ -5,6 +5,7 @@ import 'package:mobile_healthcare/common/styles/colors.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_state.dart';
 import 'package:mobile_healthcare/presentation/screen/favorites_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/home_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/seen_recently_screen.dart';
@@ -23,14 +24,6 @@ class Phone extends StatefulWidget {
 
 class _PhoneState extends BaseState<Phone> {
   int _selectedIndex = 1;
-  final List<Widget> _widgetOptions = <Widget>[
-    FavoritesScreen(),
-    BlocProvider(
-      create: (blocContext) => AuthenticationBloc(),
-      child: HomeScreen(),
-    ),
-    SeenRecentlyScreen(),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -47,7 +40,35 @@ class _PhoneState extends BaseState<Phone> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          builder: (blocContext, state) {
+        if (state is AuthenticationInitial) {
+          final List<Widget> _widgetOptions = <Widget>[
+            FavoritesScreen(),
+            HomeScreen(),
+            SeenRecentlyScreen(),
+          ];
+
+          return _widgetOptions.elementAt(_selectedIndex);
+        }
+
+        if (state is AuthenticationSuccess) {
+          final List<Widget> _widgetOptions = <Widget>[
+            FavoritesScreen(),
+            HomeScreen(
+              user: state.user,
+            ),
+            SeenRecentlyScreen(),
+          ];
+
+          return _widgetOptions.elementAt(_selectedIndex);
+        }
+
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      }),
+      /*_widgetOptions.elementAt(_selectedIndex),*/
       bottomNavigationBar: _bottomNavigationBar(),
     );
   }
