@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:mobile_healthcare/logic/api_client/user/UserAPIClient.dart';
+import 'package:mobile_healthcare/logic/api_client/user/user_api_client.dart';
 import 'package:mobile_healthcare/model/user/user.dart';
 import 'package:mobile_healthcare/model/user/user_login.dart';
 import 'package:mobile_healthcare/model/user/user_signup.dart';

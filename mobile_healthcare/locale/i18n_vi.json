@@ -40,5 +40,7 @@
     "login_failed": "SĐT hoặc mật khẩu không đúng",
     "login_success": "Đăng nhập thành công. Nhấn BACK để quay lại",
     "signup_failure": "Tài khoản đã tồn tại",
-    "signup_success": "Đăng ký thành công. Nhấn BACK để quay lại"
+    "signup_success": "Đăng ký thành công. Nhấn BACK để quay lại",
+    "edit_failure": "Cập nhật thông tin thất bại",
+    "edit_success": "Cập nhật thông tin thành công. Nhấn BACK để quay lại"
 }

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/user/sign_up/sign_up_event.dart';
 import 'package:mobile_healthcare/logic/bloc/user/sign_up/sign_up_state.dart';
-import 'package:mobile_healthcare/logic/respository/user/UserRepos.dart';
+import 'package:mobile_healthcare/logic/respository/user/user_repos.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final UserRepos repos;

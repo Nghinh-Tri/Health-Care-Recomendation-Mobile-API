@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
-import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
-import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_state.dart';
-import 'package:mobile_healthcare/presentation/widgets/home/search_bar.dart';
+import 'package:mobile_healthcare/model/user/user.dart';
 import 'package:mobile_healthcare/presentation/widgets/home/emergency_button_big.dart';
 import 'package:mobile_healthcare/presentation/widgets/home/home_drawer.dart';
+import 'package:mobile_healthcare/presentation/widgets/home/search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
+  final User user;
+
+  HomeScreen({this.user});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -31,23 +33,11 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         child: _appBar(context),
         preferredSize: const Size.fromHeight(Dimens.appbarHeight),
       ),
-      drawer: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (blocContext, state) {
-          if (state is AuthenticationInitial) {
-            return HomeDrawer();
-          }
-
-          if (state is AuthenticationSuccess) {
-            return HomeDrawer(
-              user: state.user,
-            );
-          }
-
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
+      drawer: widget.user == null
+          ? HomeDrawer()
+          : HomeDrawer(
+              user: widget.user,
+            ),
       body: ListView(
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[

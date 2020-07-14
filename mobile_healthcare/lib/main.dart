@@ -7,6 +7,7 @@ import 'package:mobile_healthcare/dependencies.dart';
 import 'package:mobile_healthcare/home.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_bloc.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_state.dart';
+import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
 import 'package:mobile_healthcare/presentation/screen/facility_detail_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/login_screen.dart';
 import 'package:mobile_healthcare/presentation/screen/rating_screen.dart';
@@ -67,7 +68,10 @@ class MyApp extends StatelessWidget {
 
   Map<String, WidgetBuilder> buildRoutes() {
     return {
-      '/': (context) => Home(),
+      '/': (context) => BlocProvider(
+            create: (blocContext) => AuthenticationBloc(),
+            child: Home(),
+          ),
       //'/': (context) => UserScreen(),
       //'/': (context) => FacilityDetailScreen(),
       //'/': (context) => RatingScreen(),

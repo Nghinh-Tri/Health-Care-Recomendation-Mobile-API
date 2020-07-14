@@ -7,6 +7,7 @@ import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_healthcare/logic/bloc/user/edit/edit_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/user/edit/edit_event.dart';
+import 'package:mobile_healthcare/logic/bloc/user/edit/edit_state.dart';
 import 'dart:ui' as ui;
 import 'package:mobile_healthcare/model/user/user.dart';
 
@@ -23,6 +24,7 @@ class _MainCardState extends BaseState<MainCard> {
   var status = false; //Field's status
   var chosenDate = ""; //User's birthday
   var nameController = TextEditingController(); //User's fullname
+  var validate = false;
 
   @override
   void initState() {
@@ -34,47 +36,72 @@ class _MainCardState extends BaseState<MainCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(
-        top: Dimens.size10,
-      ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardTheme.color,
-        border: Border(
-          top: BorderSide(
-            style: BorderStyle.solid,
-            width: Dimens.thick01,
-          ),
-          bottom: BorderSide(
-            style: BorderStyle.solid,
-            width: Dimens.thick01,
+    return BlocListener<EditBloc, EditState>(
+      listener: (listenerContext, state) {
+        if (state is EditFailure) {
+          Scaffold.of(listenerContext)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.red,
+                content: Text(translator.text("edit_failure")),
+              ),
+            );
+        }
+
+        if (state is EditSuccess) {
+          Scaffold.of(listenerContext)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.blue,
+                content: Text(translator.text("edit_success")),
+              ),
+            );
+        }
+      },
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.only(
+          top: Dimens.size10,
+        ),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardTheme.color,
+          border: Border(
+            top: BorderSide(
+              style: BorderStyle.solid,
+              width: Dimens.thick01,
+            ),
+            bottom: BorderSide(
+              style: BorderStyle.solid,
+              width: Dimens.thick01,
+            ),
           ),
         ),
-      ),
-      child: Column(
-        children: <Widget>[
-          _numberRow(
-            icon: Icons.phone,
-            label: translator.text("user_phone"),
-            userPhone: widget.user.phone,
-          ),
-          _textRow(
-            icon: Icons.person,
-            label: translator.text("user_fullname"),
-            controller: nameController,
-          ),
-          _dateRow(chosenDate),
-          status
-              ? _editButton(
-                  icon: Icons.done,
-                  label: translator.text("user_save"),
-                )
-              : _editButton(
-                  icon: Icons.edit,
-                  label: translator.text("user_edit"),
-                ),
-        ],
+        child: Column(
+          children: <Widget>[
+            _numberRow(
+              icon: Icons.phone,
+              label: translator.text("user_phone"),
+              userPhone: widget.user.phone,
+            ),
+            _textRow(
+              icon: Icons.person,
+              label: translator.text("user_fullname"),
+              controller: nameController,
+            ),
+            _dateRow(chosenDate),
+            status
+                ? _editButton(
+                    icon: Icons.done,
+                    label: translator.text("user_save"),
+                  )
+                : _editButton(
+                    icon: Icons.edit,
+                    label: translator.text("user_edit"),
+                  ),
+          ],
+        ),
       ),
     );
   }
@@ -106,6 +133,11 @@ class _MainCardState extends BaseState<MainCard> {
             child: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
+                labelText:
+                    validate ? translator.text("fullname_validate") : null,
+                labelStyle: TextStyle(
+                  color: Colors.red,
+                ),
               ),
               textDirection: ui.TextDirection.ltr,
               enabled: status,
@@ -213,7 +245,12 @@ class _MainCardState extends BaseState<MainCard> {
   }
 
   void isEdit() {
-    setState(() {
+    if (nameController.text.isEmpty) {
+      setState(() {
+        validate = !validate;
+        status = !status;
+      });
+    } else {
       if (status == true) {
         BlocProvider.of<EditBloc>(context).add(
           EditButtonPressed(
@@ -225,8 +262,10 @@ class _MainCardState extends BaseState<MainCard> {
           ),
         );
       }
-      status = !status;
-    });
+      setState(() {
+        status = !status;
+      });
+    }
   }
 
   Widget _editButton({IconData icon, String label}) {

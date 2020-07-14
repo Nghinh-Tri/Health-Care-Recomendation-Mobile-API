@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
-import 'package:mobile_healthcare/logic/api_client/user/UserAPIClient.dart';
+import 'package:mobile_healthcare/logic/api_client/user/user_api_client.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_event.dart';
 import 'package:mobile_healthcare/logic/bloc/user/login/login_bloc.dart';
-import 'package:mobile_healthcare/logic/respository/user/UserRepos.dart';
+import 'package:mobile_healthcare/logic/respository/user/user_repos.dart';
 import 'package:mobile_healthcare/model/user/user.dart';
 import 'package:mobile_healthcare/presentation/screen/login_screen.dart';
 import 'package:http/http.dart' as http;
@@ -54,8 +54,14 @@ class HomeDrawer extends BaseStatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (routeContext) => UserScreen(
-                                    user: user,
+                                  builder: (routeContext) => BlocProvider(
+                                    create: (blocContext) => LoginBloc(
+                                      repos: userRepos,
+                                      authenBloc: bloc,
+                                    ),
+                                    child: UserScreen(
+                                      user: user,
+                                    ),
                                   ),
                                 ),
                               ),
