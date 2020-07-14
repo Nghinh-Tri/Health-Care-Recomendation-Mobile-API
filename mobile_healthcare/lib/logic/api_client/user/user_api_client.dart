@@ -6,9 +6,9 @@ import 'package:mobile_healthcare/model/user/user_login.dart';
 import 'package:mobile_healthcare/model/user/user_signup.dart';
 
 class UserAPIClient {
-  //static const baseUrl = 'http://192.168.0.103:8080/api/users'; //Home's wifi
+  static const baseUrl = 'http://192.168.1.15:8080/api/users'; //Home's wifi
   //static const baseUrl = 'http://192.168.43.47:8080/api/users'; //Phone's wifi
-  static const baseUrl = 'http://172.20.10.3:8080/api/users'; //Other's wifi
+  //static const baseUrl = 'http://10.1.148.218:8080/api/users'; //Other's wifi
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
