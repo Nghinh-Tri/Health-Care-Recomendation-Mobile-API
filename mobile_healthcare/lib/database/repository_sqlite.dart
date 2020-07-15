@@ -41,6 +41,18 @@ class RepositoryServiceSQLite {
       ${facility.image}
     )''';
 
-    final result = await DatabaseCreator.db.rawInsert(sql);
+    final duplicate = getFacility(facility.id);
+    if (duplicate == null) {
+      await DatabaseCreator.db.rawInsert(sql);
+    }
+  }
+
+  static Future<void> deleteFacility(int id) async {
+    final sql =
+        '''DELETE FROM ${DatabaseCreator.table} WHERE ${DatabaseCreator.id} = $id''';
+    final fac = getFacility(id);
+    if (fac != null) {
+      await DatabaseCreator.db.rawDelete(sql);
+    }
   }
 }
