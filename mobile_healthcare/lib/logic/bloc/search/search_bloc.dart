@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/search/search_event.dart';
 import 'package:mobile_healthcare/logic/bloc/search/search_state.dart';
 import 'package:mobile_healthcare/logic/respository/search/search_repos.dart';
-import 'package:mobile_healthcare/model/search/search_result.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final SearchRepos repos;

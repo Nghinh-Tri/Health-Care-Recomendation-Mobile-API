@@ -5,16 +5,16 @@ part 'facility_detail.g.dart';
 
 @JsonSerializable()
 class FacilityDetail {
-  final int facilitiesdetails_id;
-  final int facility_id;
-  final int speciality_id;
-  final int symptom_id;
+  final int detailID;
+  final int facilityID;
+  final int specialityID;
+  final int symptomID;
 
   FacilityDetail({
-    @required this.facilitiesdetails_id,
-    @required this.facility_id,
-    @required this.speciality_id,
-    @required this.symptom_id,
+    @required this.detailID,
+    @required this.facilityID,
+    @required this.specialityID,
+    @required this.symptomID,
   });
 
   factory FacilityDetail.fromJson(Map<String, dynamic> json) =>

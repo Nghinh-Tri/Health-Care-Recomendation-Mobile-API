@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:mobile_healthcare/model/search/search_result.dart';
 
 abstract class SearchState extends Equatable {
   @override
