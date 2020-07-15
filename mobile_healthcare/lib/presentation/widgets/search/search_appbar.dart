@@ -37,6 +37,7 @@ class _SearchAppBarState extends BaseState<SearchAppBar> {
             color: Theme.of(context).cardColor,
           ),
         ),
+        minimumChars: 2,
         onSearch: search,
         onError: (error) {
           return Center(

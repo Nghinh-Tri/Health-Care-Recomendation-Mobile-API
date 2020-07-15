@@ -11,7 +11,7 @@ import 'package:mobile_healthcare/model/symptom/symptom_list.dart';
 
 class SearchAPIClient {
   static const baseUrl =
-      'http://172.20.10.3:8080/api'; //Change ip address depend on wifi
+      'http://10.1.130.205:8080/api'; //Change ip address depend on wifi
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
