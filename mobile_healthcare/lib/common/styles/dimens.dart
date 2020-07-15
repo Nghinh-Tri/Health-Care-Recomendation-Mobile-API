@@ -16,6 +16,7 @@ class Dimens {
   static const size60 = 60.0;
   static const size65 = 65.0;
   static const size70 = 70.0;
+  static const size80 = 80.0;
   static const size90 = 90.0;
   static const size100 = 100.0;
   static const size110 = 110.0;
@@ -31,6 +32,7 @@ class Dimens {
   static const thick02 = 0.2;
   static const thick03 = 0.3;
   static const thick04 = 0.4;
+  static const thick05 = 0.5;
 
   /* Border's radius */
   static const radius3 = 3.0;

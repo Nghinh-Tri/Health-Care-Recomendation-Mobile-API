@@ -7,7 +7,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:mobile_healthcare/model/user/user_location.dart';
 
 class FacilityAPIClient {
-  static const baseUrl = 'http://192.168.1.15:8080/api/facilities';
+  static const baseUrl =
+      'http://192.168.0.101:8080/api/facilities'; //Change ip address depend on wifi
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
@@ -34,7 +35,7 @@ class FacilityAPIClient {
     double i = 0;
 
     FacilityList facilityList = FacilityList.fromJson(facilityListJson);
-    for (var facility in facilityList.list) {
+    for (var facility in facilityList.facilities) {
       final distance = await Geolocator().distanceBetween(location.latitude,
           location.longtitude, facility.latitude, facility.longtitude);
       if (distance < limitDistance) {

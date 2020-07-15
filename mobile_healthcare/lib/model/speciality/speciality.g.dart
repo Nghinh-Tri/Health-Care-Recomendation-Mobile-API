@@ -9,7 +9,7 @@ part of 'speciality.dart';
 Speciality _$SpecialityFromJson(Map<String, dynamic> json) {
   return Speciality(
     id: json['id'] as int,
-    symptom: json['symptom'] as String,
+    speciality: json['speciality'] as String,
     translation: json['translation'] as String,
   );
 }
@@ -17,6 +17,6 @@ Speciality _$SpecialityFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$SpecialityToJson(Speciality instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'symptom': instance.symptom,
+      'speciality': instance.speciality,
       'translation': instance.translation,
     };

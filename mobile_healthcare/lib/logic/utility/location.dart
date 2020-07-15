@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
 
 Future<Position> getPosition() async {

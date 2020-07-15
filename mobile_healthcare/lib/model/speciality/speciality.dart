@@ -6,12 +6,12 @@ part 'speciality.g.dart';
 @JsonSerializable()
 class Speciality {
   final int id;
-  final String symptom;
+  final String speciality;
   final String translation;
 
   Speciality({
     @required this.id,
-    @required this.symptom,
+    @required this.speciality,
     @required this.translation,
   });
 

@@ -68,7 +68,6 @@ class _PhoneState extends BaseState<Phone> {
           child: CircularProgressIndicator(),
         );
       }),
-      /*_widgetOptions.elementAt(_selectedIndex),*/
       bottomNavigationBar: _bottomNavigationBar(),
     );
   }
