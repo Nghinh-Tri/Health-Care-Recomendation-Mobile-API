@@ -38,7 +38,7 @@ class _EmergencyButtonBigState extends BaseState<EmergencyButtonBig> {
             padding: const EdgeInsets.only(top: Dimens.size150),
             child: GestureDetector(
               onLongPress: () => {
-                BlocProvider.of<>(context).add(EmergencyPress(location: location))
+                //BlocProvider.of<>(context).add(EmergencyPress(location: location))
               },
               child: ClipOval(
                 child: Container(
