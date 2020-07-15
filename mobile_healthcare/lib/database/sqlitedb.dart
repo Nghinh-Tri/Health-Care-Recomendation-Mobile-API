@@ -5,9 +5,6 @@ import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
 
 class DatabaseCreator {
-  // DatabaseCreator._();
-  // static final DatabaseCreator db = DatabaseCreator._();
-
   static Database db;
   static const table = 'facility';
 
@@ -50,37 +47,4 @@ class DatabaseCreator {
   Future<void> onCreate(Database db, int verson) async {
     await createTable(db);
   }
-
-  // Future<Database> get database async {
-  //   if (_database != null) return _database;
-  //   _database = await initDB();
-  //   return _database;
-  // }
-
-  // initDB() async {
-  //   final createQuery = '''CREATE TABLE $table(
-  //     $id INTERGER PRIMARY KEY,
-  //     $name TEXT,
-  //     $address TEXT,
-  //     $phone TEXT,
-  //     $latitude REAL,
-  //     $longtitude REAL,
-  //     $image TEXT
-  //   )''';
-  //   return await openDatabase(join(await getDatabasesPath(), 'healthcare.db'),
-  //       onCreate: (db, version) async {
-  //     await db.execute(createQuery);
-  //   }, version: 1);
-  // }
-
-  // Future<dynamic> getFacility() async {
-  //   final db = await database;
-  //   var res = await db.query('user');
-  //   if (res.length == 0) {
-  //     return null;
-  //   }else{
-  //     var
-  //   }
-  // }
-
 }

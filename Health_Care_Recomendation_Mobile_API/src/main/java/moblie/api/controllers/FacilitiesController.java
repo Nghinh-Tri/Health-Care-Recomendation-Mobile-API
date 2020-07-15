@@ -1,7 +1,6 @@
 package moblie.api.controllers;
 
 import moblie.api.entities.Facilities;
-import moblie.api.entities.UserLocation;
 import moblie.api.services.FacilitiesService;
 
 import java.util.HashMap;
@@ -12,9 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RestController
 @CrossOrigin
@@ -23,10 +19,10 @@ public class FacilitiesController {
     @Autowired
     private FacilitiesService facilitiesService;
 
-    @PostMapping("/facilities")
-    public ResponseEntity<?> getFacility(@RequestBody Facilities facilities){
+    @GetMapping("/facilities/{id}")
+    public ResponseEntity<?> getFacility(@PathVariable int id){
         try {
-            Facilities facility = facilitiesService.getFacilityById(facilities.getId());
+            Facilities facility = facilitiesService.getFacilityById(id);
             if(facility != null){
                 return new ResponseEntity<Facilities>(facility, HttpStatus.OK);
             }
