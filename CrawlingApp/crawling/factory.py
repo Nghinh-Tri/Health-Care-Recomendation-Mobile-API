@@ -10,14 +10,15 @@ logger = logging.Logger('catch_all')
 def crawlingFactory(link, filepath):
     try:
         print("Start crawling factory: " + link)
-        if(os.path.isfile(filepath) == False):
-            util.writeHtmlFile(link,filepath)
-        html = util.readHtmlFile(filepath)
+        abPath = os.path.realpath(filepath)
+        if(os.path.isfile(abPath) == False):
+            util.writeHtmlFile(link,abPath)
+        html = util.readHtmlFile(abPath)
 
         soup = BeautifulSoup(html,"html.parser")
         for link in soup.find_all('a', attrs={'class': 'tendonviwebngoai'}):
             name = str(link.string)
-            
+
             key = "AIzaSyAEHOJH4Oi0FWuB9rlQOBlf4eQ2kgXLFo4"
             lat = util.getLocation(key,name,"lat")
             lgn = util.getLocation(key,name,"lng")
@@ -41,7 +42,8 @@ def crawlingFactory(link, filepath):
     except: print("error at crawling Facility")
 
 def getImage(factory):
-    browser = webdriver.Chrome('E:\Health Care Recomendation Mobile API\CrawlingApp\chromedriver.exe')
+    abPath = os.path.realpath('chromedriver.exe')
+    browser = webdriver.Chrome(abPath)
     browser.get('http://www.google.com/images?q==' + factory + "-logo")
     data = BeautifulSoup(browser.page_source,"html.parser")
     image = data.find('img',{'class':'rg_i Q4LuWd'})

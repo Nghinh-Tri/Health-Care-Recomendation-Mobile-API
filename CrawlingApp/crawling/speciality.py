@@ -11,9 +11,11 @@ translator=Translator()
 def crawlingSpeciality(link, filepath):
     try:
         print("Start crawling speciality: " + link)
-        if (os.path.isfile(filepath) == False):
-            util.writeHtmlFile(link, filepath)
-        html = util.readHtmlFile(filepath)
+        abPath = os.path.realpath(filepath)
+        print(abPath)
+        if (os.path.isfile(abPath) == False):
+            util.writeHtmlFile(link, abPath)
+        html = util.readHtmlFile(abPath)
 
         soup = BeautifulSoup(html, "html.parser")
         for link in soup.find_all('a',{'class':'specialty-listing__content-anchor'}):
