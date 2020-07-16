@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/search/search_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/search/search_state.dart';
+import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/presentation/widgets/search_result/facility_card.dart';
 
 class SearchResultScreen extends BaseStatelessWidget {
@@ -12,10 +16,25 @@ class SearchResultScreen extends BaseStatelessWidget {
         child: _appBar(context),
         preferredSize: const Size.fromHeight(Dimens.appbarHeight),
       ),
-      body: ListView(
-        children: <Widget>[
-          FacilityCard(),
-        ],
+      body: BlocBuilder<SearchBloc, SearchState>(
+        builder: (blocContext, state) {
+          if (state is SearchHasData) {
+            return _listResults(state.results);
+          }
+
+          if (state is SearchFailed) {
+            return Center(
+              child: Text(
+                translator.text("search_error"),
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            );
+          }
+
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
@@ -44,7 +63,7 @@ class SearchResultScreen extends BaseStatelessWidget {
                 size: Dimens.size30,
               ),
               color: Theme.of(context).cardColor,
-              onPressed: () => {},
+              onPressed: () => {Navigator.pop(context)},
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -52,7 +71,7 @@ class SearchResultScreen extends BaseStatelessWidget {
                 top: Dimens.size12,
               ),
               child: Text(
-                translator.text("search_result"), //for testing
+                translator.text("search_result"),
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
                   fontSize: Dimens.size20,
@@ -62,6 +81,17 @@ class SearchResultScreen extends BaseStatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _listResults(List<Facility> list) {
+    return ListView(
+      children: <Widget>[
+        for (var item in list)
+          FacilityCard(
+            facility: item,
+          ),
+      ],
     );
   }
 }

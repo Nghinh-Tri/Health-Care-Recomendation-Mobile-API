@@ -24,7 +24,7 @@ public class FacilitiesDetailsController {
             Map<String,List<Facilitiesdetails>> result = new HashMap<>();
             List<Facilitiesdetails> listFacilitiesDetails = facilitiesDetailsService.getFacilitiesBySpeciality(Integer.parseInt(id));
             if (listFacilitiesDetails != null){
-                result.put("facilities-detail", listFacilitiesDetails);
+                result.put("details", listFacilitiesDetails);
                 return new ResponseEntity<Map<String,List<Facilitiesdetails>>>(result, HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -39,7 +39,7 @@ public class FacilitiesDetailsController {
             Map<String,List<Facilitiesdetails>> result = new HashMap<>();
             List<Facilitiesdetails> listFacilitiesDetails = facilitiesDetailsService.getFacilitiesBySimptom(Integer.parseInt(id));
             if (listFacilitiesDetails != null){
-                result.put("facilities-detail", listFacilitiesDetails);
+                result.put("details", listFacilitiesDetails);
                 return new ResponseEntity<Map<String,List<Facilitiesdetails>>>(result, HttpStatus.OK);                
             }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

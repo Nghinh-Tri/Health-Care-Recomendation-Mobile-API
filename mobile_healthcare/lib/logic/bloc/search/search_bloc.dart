@@ -32,5 +32,36 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         yield SearchFailed();
       }
     }
+
+    if (event is SearchFacilitiesBySymptom) {
+      yield Searching();
+
+      try {
+        final results = await repos.getFacilitiesBySymptom(event.symptomID);
+        if (results.isNotEmpty) {
+          yield SearchHasData(results: results);
+        } else {
+          yield SearchFailed();
+        }
+      } catch (_) {
+        yield SearchFailed();
+      }
+    }
+
+    if (event is SearchFacilitiesBySpeciality) {
+      yield Searching();
+
+      try {
+        final results =
+            await repos.getFacilitiesBySpeciality(event.specialityID);
+        if (results.isNotEmpty) {
+          yield SearchHasData(results: results);
+        } else {
+          yield SearchFailed();
+        }
+      } catch (_) {
+        yield SearchFailed();
+      }
+    }
   }
 }
