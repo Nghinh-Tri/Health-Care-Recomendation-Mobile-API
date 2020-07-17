@@ -4,6 +4,8 @@ import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:mobile_healthcare/common/styles/colors.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_event.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_state.dart';
 import 'package:mobile_healthcare/presentation/screen/favorites_screen.dart';
@@ -44,9 +46,15 @@ class _PhoneState extends BaseState<Phone> {
           builder: (blocContext, state) {
         if (state is AuthenticationInitial) {
           final List<Widget> _widgetOptions = <Widget>[
-            FavoritesScreen(),
+            BlocProvider(
+              create: (blocContext) => HadSeenBloc()..add(HadSeenPress()),
+              child: FavoritesScreen(),
+            ),
             HomeScreen(),
-            SeenRecentlyScreen(),
+            BlocProvider(
+              create: (blocContext) => HadSeenBloc()..add(HadSeenPress()),
+              child: SeenRecentlyScreen(),
+            ),
           ];
 
           return _widgetOptions.elementAt(_selectedIndex);
@@ -58,7 +66,10 @@ class _PhoneState extends BaseState<Phone> {
             HomeScreen(
               user: state.user,
             ),
-            SeenRecentlyScreen(),
+            BlocProvider(
+              create: (context) => HadSeenBloc()..add(HadSeenPress()),
+              child: SeenRecentlyScreen(),
+            ),
           ];
 
           return _widgetOptions.elementAt(_selectedIndex);
