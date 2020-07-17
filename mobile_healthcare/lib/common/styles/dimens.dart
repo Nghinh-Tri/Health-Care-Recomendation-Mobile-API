@@ -46,6 +46,7 @@ class Dimens {
 
   /* Image */
   static const imageHeight = 240.0;
+  static const miniImage = 60.0;
 
   /* ActionIcon */
   static const dividerHeight = 60.0;

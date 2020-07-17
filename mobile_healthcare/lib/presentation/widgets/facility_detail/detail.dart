@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/model/facility/facility.dart';
 
 class Detail extends BaseStatelessWidget {
+  final Facility facility;
+
+  Detail({@required this.facility});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,12 +30,12 @@ class Detail extends BaseStatelessWidget {
           _customRow(
             context: context,
             label: translator.text("facility_address"),
-            content: "123 Lê Đức Thọ P.15 Q.Gò Vấp", //for testing
+            content: facility.address, //for testing
           ),
           _customRow(
             context: context,
             label: translator.text("facility_phone"),
-            content: "0123456789", //for testing
+            content: facility.phone, //for testing
           ),
         ],
       ),
@@ -45,7 +50,7 @@ class Detail extends BaseStatelessWidget {
           Text(
             label,
             maxLines: 2,
-            style: Theme.of(context).textTheme.subtitle2,
+            style: Theme.of(context).textTheme.headline6,
           ),
           Spacer(),
           Expanded(

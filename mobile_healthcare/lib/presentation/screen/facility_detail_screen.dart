@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/action_bar.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/detail.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/overview.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/rating.dart';
 
 class FacilityDetailScreen extends StatefulWidget {
+  final Facility facility;
+
+  FacilityDetailScreen({@required this.facility});
+
   @override
   _FacilityDetailScreenState createState() => _FacilityDetailScreenState();
 }
@@ -25,15 +30,12 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
           _image(),
           ActionBar(),
           _label(
-            label: translator.text("facility_overview"),
-            isVisible: false, //Check visible
-          ),
-          Overview(),
-          _label(
             label: translator.text("facility_detail"),
             isVisible: false, //Check visible
           ),
-          Detail(),
+          Detail(
+            facility: widget.facility,
+          ),
           _label(
             label: translator.text("facility_user_rating"),
             isVisible: true, //Check visible
@@ -69,14 +71,14 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
                 size: Dimens.size30,
               ),
               color: Theme.of(context).cardColor,
-              onPressed: () => {},
+              onPressed: () => {Navigator.pop(context)},
             ),
             Padding(
               padding: const EdgeInsets.only(
                 top: Dimens.size12,
               ),
               child: Text(
-                "TRAM Y TE PHUONG 16", //for testing
+                widget.facility.name, //for testing
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
                   fontSize: Dimens.size20,

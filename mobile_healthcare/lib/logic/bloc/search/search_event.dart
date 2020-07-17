@@ -18,3 +18,27 @@ class SearchStarted extends SearchEvent {
         input,
       ];
 }
+
+class SearchFacilitiesBySymptom extends SearchEvent {
+  final int symptomID;
+
+  SearchFacilitiesBySymptom({@required this.symptomID});
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [
+        symptomID,
+      ];
+}
+
+class SearchFacilitiesBySpeciality extends SearchEvent {
+  final int specialityID;
+
+  SearchFacilitiesBySpeciality({@required this.specialityID});
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [
+        specialityID,
+      ];
+}

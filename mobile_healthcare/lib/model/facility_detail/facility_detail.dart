@@ -5,13 +5,13 @@ part 'facility_detail.g.dart';
 
 @JsonSerializable()
 class FacilityDetail {
-  final int detailID;
+  final int id;
   final int facilityID;
   final int specialityID;
   final int symptomID;
 
   FacilityDetail({
-    @required this.detailID,
+    @required this.id,
     @required this.facilityID,
     @required this.specialityID,
     @required this.symptomID,
