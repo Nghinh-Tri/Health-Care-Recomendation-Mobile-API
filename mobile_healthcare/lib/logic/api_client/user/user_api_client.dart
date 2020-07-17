@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile_healthcare/main.dart';
 import 'package:mobile_healthcare/model/user/user.dart';
 import 'package:mobile_healthcare/model/user/user_login.dart';
 import 'package:mobile_healthcare/model/user/user_signup.dart';
 
 class UserAPIClient {
   static const baseUrl =
-      'http://10.1.130.205:8080/api/users'; //Change ip address depend on wifi
+      'http://$ip:8080/api/users'; //Change ip address depend on wifi
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 

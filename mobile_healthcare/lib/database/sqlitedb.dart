@@ -61,7 +61,7 @@ class DatabaseCreator {
   static Future<Facility> getFacility(int id) async {
     final db = await database;
     var res = await db.query(table, where: "id = ?", whereArgs: [id]);
-    return res.isNotEmpty ? Facility.fromJson(res.first) : Null;
+    return res.isNotEmpty ? Facility.fromJson(res.first) : null;
   }
 
   static Future<List<Facility>> getAllFacilities() async {

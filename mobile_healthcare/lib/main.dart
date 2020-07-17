@@ -8,14 +8,9 @@ import 'package:mobile_healthcare/home.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_bloc.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_state.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
-import 'package:mobile_healthcare/presentation/screen/facility_detail_screen.dart';
-import 'package:mobile_healthcare/presentation/screen/login_screen.dart';
-import 'package:mobile_healthcare/presentation/screen/rating_screen.dart';
-import 'package:mobile_healthcare/presentation/screen/search_result_screen.dart';
-import 'package:mobile_healthcare/presentation/screen/search_screen.dart';
-import 'package:mobile_healthcare/presentation/screen/signup_screen.dart';
-import 'package:mobile_healthcare/presentation/screen/user_screen.dart';
 import 'package:path_provider/path_provider.dart';
+
+const String ip = '192.168.43.47'; //Change ip here
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -72,13 +67,6 @@ class MyApp extends StatelessWidget {
             create: (blocContext) => AuthenticationBloc(),
             child: Home(),
           ),
-      //'/': (context) => UserScreen(),
-      //'/': (context) => FacilityDetailScreen(),
-      //'/': (context) => RatingScreen(),
-      //'/': (context) => LoginScreen(),
-      //'/': (context) => SignUpScreen(),
-      //'/': (context) => SearchScreen(),
-      //'/': (context) => SearchResultScreen(),
     };
   }
 }
