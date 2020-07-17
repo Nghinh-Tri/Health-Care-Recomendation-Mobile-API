@@ -62,11 +62,17 @@ class _PhoneState extends BaseState<Phone> {
 
         if (state is AuthenticationSuccess) {
           final List<Widget> _widgetOptions = <Widget>[
-            FavoritesScreen(),
+            BlocProvider(
+              create: (blocContext) => HadSeenBloc()..add(HadSeenPress()),
+              child: FavoritesScreen(),
+            ),
             HomeScreen(
               user: state.user,
             ),
-            SeenRecentlyScreen(),
+            BlocProvider(
+              create: (blocContext) => HadSeenBloc()..add(HadSeenPress()),
+              child: SeenRecentlyScreen(),
+            ),
           ];
 
           return _widgetOptions.elementAt(_selectedIndex);
