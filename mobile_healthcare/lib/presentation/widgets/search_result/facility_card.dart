@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
@@ -52,7 +54,7 @@ class FacilityCard extends BaseStatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: Dimens.size5),
             child: Text(
-              translator.text("test_distance"),
+              facility.distanceToUser.toStringAsFixed(2) + " km",
             ), //Distance to place
           ),
         ],
@@ -63,8 +65,8 @@ class FacilityCard extends BaseStatelessWidget {
   Widget _image() {
     return Container(
       height: Dimens.miniImage,
-      child: Image.network(
-        'https://picsum.photos/250?image=9', //for testing
+      child: Image.memory(
+        base64.decode(facility.image.split(",").last),
         fit: BoxFit.fill,
       ),
     );

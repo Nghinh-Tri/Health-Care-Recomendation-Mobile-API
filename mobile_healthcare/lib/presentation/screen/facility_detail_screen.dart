@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
@@ -102,8 +104,8 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
   Widget _image() {
     return Container(
       height: Dimens.imageHeight,
-      child: Image.network(
-        'https://picsum.photos/250?image=9', //for testing
+      child: Image.memory(
+        base64.decode(widget.facility.image.split(",").last),
         fit: BoxFit.fill,
       ),
     );
