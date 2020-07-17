@@ -5,7 +5,7 @@ import 'package:mobile_healthcare/common/styles/colors.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/emergency/emergency_event.dart';
-import 'package:mobile_healthcare/logic/utility/location.dart';
+import 'package:mobile_healthcare/logic/utility/location_related.dart';
 import 'package:mobile_healthcare/model/user/user_location.dart';
 
 class EmergencyButtonBig extends StatefulWidget {
@@ -26,7 +26,7 @@ class _EmergencyButtonBigState extends BaseState<EmergencyButtonBig> {
 
   Widget _emergencyButton() {
     return FutureBuilder(
-        future: getPosition(),
+        future: getCurrentLocation(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Container();

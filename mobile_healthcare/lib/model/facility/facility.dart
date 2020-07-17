@@ -12,6 +12,7 @@ class Facility {
   final double latitude;
   final double longtitude;
   final String image;
+  double distanceToUser;
 
   Facility({
     @required this.id,
@@ -21,6 +22,7 @@ class Facility {
     @required this.latitude,
     @required this.longtitude,
     @required this.image,
+    this.distanceToUser,
   });
 
   factory Facility.fromJson(Map<String, dynamic> json) =>

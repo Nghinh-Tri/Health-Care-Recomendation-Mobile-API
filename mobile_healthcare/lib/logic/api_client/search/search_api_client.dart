@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile_healthcare/logic/utility/location_related.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/model/facility_detail/facility_detail_list.dart';
 import 'package:mobile_healthcare/model/search/search_result.dart';
@@ -13,7 +15,7 @@ import 'package:mobile_healthcare/model/symptom/symptom_list.dart';
 
 class SearchAPIClient {
   static const baseUrl =
-      'http://192.168.0.104:8080/api'; //Change ip address depend on wifi
+      'http://192.168.43.47:8080/api'; //Change ip address depend on wifi
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
@@ -93,7 +95,9 @@ class SearchAPIClient {
 
   //Get list of facilities based on user's input
   Future<List<Facility>> _getFacilities(Set<int> list) async {
+    final userLocation = await getCurrentLocation();
     List<Facility> results = List();
+
     for (var item in list) {
       var url = '$baseUrl/facilities/$item';
 
@@ -107,8 +111,19 @@ class SearchAPIClient {
 
       var facility = Facility.fromJson(facilityJson);
 
+      var distance = await Geolocator().distanceBetween(
+        userLocation.latitude,
+        userLocation.longitude,
+        facility.latitude,
+        facility.longtitude,
+      );
+
+      facility.distanceToUser = (distance / 1000);
+
       results.add(facility);
     }
+
+    results.sort((a, b) => a.distanceToUser.compareTo(b.distanceToUser));
 
     return results;
   }
