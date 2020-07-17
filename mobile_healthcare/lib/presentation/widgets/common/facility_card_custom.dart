@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/model/facility/facility.dart';
 
 class FacilityCardCustom extends BaseStatelessWidget {
+  Facility facility;
+
+  FacilityCardCustom(this.facility);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,21 +45,17 @@ class FacilityCardCustom extends BaseStatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: Dimens.size5),
           child: Text(
-            translator.text("test_facility_name"),
+            facility.name,
           ),
         ), //Facility's name
         _subRow(
           Icons.location_on,
-          translator.text("test_facility_address"),
+          facility.address,
         ), //Facility's address
         _subRow(
-          Icons.access_time,
-          translator.text("test_facility_workhour"),
-        ), //Facility's working hour
-        _subRow(
           Icons.check_circle_outline,
-          translator.text("test_facility_status"),
-        ), //Facility's status
+          facility.phone,
+        ), //Facility's phone
       ],
     );
   }
@@ -75,6 +76,7 @@ class FacilityCardCustom extends BaseStatelessWidget {
     );
   }
 
+  //delete button
   Widget _rightColumn() {
     return Expanded(
       child: IconButton(
