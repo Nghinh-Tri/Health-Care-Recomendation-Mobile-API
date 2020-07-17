@@ -66,10 +66,7 @@ class _PhoneState extends BaseState<Phone> {
             HomeScreen(
               user: state.user,
             ),
-            BlocProvider(
-              create: (context) => HadSeenBloc()..add(HadSeenPress()),
-              child: SeenRecentlyScreen(),
-            ),
+            SeenRecentlyScreen(),
           ];
 
           return _widgetOptions.elementAt(_selectedIndex);
