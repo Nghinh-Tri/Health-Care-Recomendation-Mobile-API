@@ -1,4 +1,4 @@
-from crawling import factory as factory
+from crawling import facility as factory
 from crawling import speciality as speciality
 from crawling import symptom as symptom
 from crawling import facility_detail as detail
