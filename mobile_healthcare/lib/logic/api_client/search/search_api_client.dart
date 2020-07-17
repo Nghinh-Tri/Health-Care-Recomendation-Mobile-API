@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/logic/utility/location_related.dart';
+import 'package:mobile_healthcare/main.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/model/facility_detail/facility_detail_list.dart';
 import 'package:mobile_healthcare/model/search/search_result.dart';
@@ -14,7 +15,8 @@ import 'package:mobile_healthcare/model/symptom/symptom_input.dart';
 import 'package:mobile_healthcare/model/symptom/symptom_list.dart';
 
 class SearchAPIClient {
-  static const baseUrl = 'http://172.20.10.5:8080/api'; //Change ip address depend on wifi
+  static const baseUrl =
+      'http://$ip:8080/api'; //Change ip address depend on wifi
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
