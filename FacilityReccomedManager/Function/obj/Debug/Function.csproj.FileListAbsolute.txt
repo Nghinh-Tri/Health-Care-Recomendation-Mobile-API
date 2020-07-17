@@ -1,0 +1,13 @@
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\Function.exe.config
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\Function.exe
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\Function.pdb
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\MySql.Data.dll
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\Google.Protobuf.dll
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\Renci.SshNet.dll
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\bin\Debug\MySql.Data.xml
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\obj\Debug\Function.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\obj\Debug\Function.csproj.CopyComplete
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\obj\Debug\Function.exe
+C:\Users\Admin\source\repos\FacilityReccomedManager\Function\obj\Debug\Function.pdb

@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1168D5F1-EFE3-4A42-8D0E-898713521DB1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FacilityReccomedManager</RootNamespace>
+    <AssemblyName>FacilityReccomedManager</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacilityDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacilityDetail.Designer.cs">
+      <DependentUpon>FacilityDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FacilityManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FacilityManage.Designer.cs">
+      <DependentUpon>FacilityManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialityManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpecialityManage.Designer.cs">
+      <DependentUpon>SpecialityManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SymptomManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SymptomManage.Designer.cs">
+      <DependentUpon>SymptomManage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacilityDetail.resx">
+      <DependentUpon>FacilityDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacilityManage.resx">
+      <DependentUpon>FacilityManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpecialityManage.resx">
+      <DependentUpon>SpecialityManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SymptomManage.resx">
+      <DependentUpon>SymptomManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Function\Function.csproj">
+      <Project>{ff4d894a-a3bd-4e73-b11a-a05e9010211c}</Project>
+      <Name>Function</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\administrator_male_80px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vector-hospital-icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vector-hospital-icon1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\symptom-checker-and-medical-services-icon-flat-vector-5840355.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\symptom-1-826300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rsz_rural_hospital_access.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rsz_medical-specialties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go_back_16px.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
