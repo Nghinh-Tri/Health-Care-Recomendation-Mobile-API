@@ -3,14 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mobile_healthcare/common/config/app_configuration.dart';
 import 'package:mobile_healthcare/common/config/global_translation.dart';
-import 'package:mobile_healthcare/dependencies.dart';
-import 'package:mobile_healthcare/home.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_bloc.dart';
 import 'package:mobile_healthcare/common/theme/theme_app/theme_state.dart';
+import 'package:mobile_healthcare/dependencies.dart';
+import 'package:mobile_healthcare/home.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-
-const String ip = '192.168.43.47'; //Change ip here
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
