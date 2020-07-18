@@ -19,8 +19,18 @@ public class SpecialityController {
     private SpecialityService specialityService;
 
     @GetMapping("/specialities")
-    public List<Specialities> listSymptom() {
-        return specialityService.listAll();
+    public ResponseEntity<?> listSymptom() {
+        try {
+            Map<String,List<Specialities>> result = new HashMap<>();
+            List<Specialities> listSpecialities = specialityService.listAll();
+            if (listSpecialities != null){
+                result.put("specialities", listSpecialities);
+                return new ResponseEntity<Map<String,List<Specialities>>>(result, HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/specialities")
