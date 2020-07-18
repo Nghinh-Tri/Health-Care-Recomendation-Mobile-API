@@ -22,3 +22,27 @@ C:\Users\Admin\source\repos\FacilityReccomedManager\FacilityReccomedManager\obj\
 C:\Users\Admin\source\repos\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.FacilityManage.resources
 C:\Users\Admin\source\repos\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.SpecialityManage.resources
 C:\Users\Admin\source\repos\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.FacilityDetail.resources
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\FacilityReccomedManager.exe.config
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\FacilityReccomedManager.exe
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\FacilityReccomedManager.pdb
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\Function.exe
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\MySql.Data.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\Google.Protobuf.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\BouncyCastle.Crypto.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\Ubiety.Dns.Core.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\Renci.SshNet.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\Function.pdb
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\Function.exe.config
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\bin\Debug\MySql.Data.xml
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.csprojAssemblyReference.cache
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.Admin.resources
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.FacilityDetail.resources
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.FacilityManage.resources
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.Login.resources
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.Properties.Resources.resources
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.SpecialityManage.resources
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.SymptomManage.resources
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.csproj.GenerateResource.cache
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.csproj.CopyComplete
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.exe
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\FacilityReccomedManager\obj\Debug\FacilityReccomedManager.pdb
