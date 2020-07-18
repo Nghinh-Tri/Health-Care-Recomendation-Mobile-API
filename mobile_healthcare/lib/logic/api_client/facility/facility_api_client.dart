@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:mobile_healthcare/main.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 
 import 'dart:convert';

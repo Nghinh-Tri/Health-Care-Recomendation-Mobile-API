@@ -10,8 +10,6 @@ import 'package:mobile_healthcare/common/theme/theme_app/theme_state.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
-const String ip = '192.168.43.47'; //Change ip here
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final rootFolder = await getApplicationDocumentsDirectory();

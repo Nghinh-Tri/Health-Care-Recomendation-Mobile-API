@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/logic/utility/location_related.dart';
-import 'package:mobile_healthcare/main.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/model/facility_detail/facility_detail_list.dart';
 import 'package:mobile_healthcare/model/search/search_result.dart';

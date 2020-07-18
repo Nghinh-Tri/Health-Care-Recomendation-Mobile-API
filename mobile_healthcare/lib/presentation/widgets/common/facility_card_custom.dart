@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_event.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 
 class FacilityCardCustom extends BaseStatelessWidget {
@@ -25,7 +28,7 @@ class FacilityCardCustom extends BaseStatelessWidget {
         children: <Widget>[
           _leftColumn(),
           _centerColumn(),
-          _rightColumn(),
+          _rightColumn(context),
         ],
       ),
     );
@@ -77,12 +80,14 @@ class FacilityCardCustom extends BaseStatelessWidget {
   }
 
   //delete button
-  Widget _rightColumn() {
+  Widget _rightColumn(BuildContext context) {
     return Expanded(
       child: IconButton(
-        icon: Icon(Icons.close),
-        onPressed: () => {},
-      ),
+          icon: Icon(Icons.close),
+          onPressed: () => {
+                BlocProvider.of<HadSeenBloc>(context)
+                    .add(HadSeenDeletePress(facility.id))
+              }),
     );
   }
 }

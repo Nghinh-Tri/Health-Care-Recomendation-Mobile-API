@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:mobile_healthcare/main.dart';
 import 'package:mobile_healthcare/model/user/user.dart';
 import 'package:mobile_healthcare/model/user/user_login.dart';
 import 'package:mobile_healthcare/model/user/user_signup.dart';

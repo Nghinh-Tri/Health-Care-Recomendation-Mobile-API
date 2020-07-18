@@ -14,7 +14,7 @@ class RepositoryServiceSQLite {
     DatabaseCreator.addFacility(facility);
   }
 
-  static Future<void> deleteFacility(int id) async {
-    DatabaseCreator.deleteFacility(id);
+  static Future<int> deleteFacility(int id) async {
+    return DatabaseCreator.deleteFacility(id);
   }
 }
