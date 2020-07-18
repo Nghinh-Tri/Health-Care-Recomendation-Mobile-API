@@ -46,5 +46,4 @@ public class FacilitiesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
 }

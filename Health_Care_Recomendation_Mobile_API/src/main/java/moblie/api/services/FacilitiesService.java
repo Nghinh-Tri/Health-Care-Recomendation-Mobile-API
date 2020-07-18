@@ -18,6 +18,6 @@ public class FacilitiesService {
     }
 
     public List<Facilities> getAllFacilities(){
-        return facilitiesRepository.findAll();
+        return facilitiesRepository.getFacilities();
     }
 }
