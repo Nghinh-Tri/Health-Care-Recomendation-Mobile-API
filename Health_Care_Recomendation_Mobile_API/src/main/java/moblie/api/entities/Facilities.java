@@ -17,6 +17,8 @@ public class Facilities {
     public Facilities() {
     }
 
+    
+
     public int getId() {
         return id;
     }
