@@ -9,7 +9,7 @@ import 'package:mobile_healthcare/model/user/user_location.dart';
 
 class FacilityAPIClient {
   static const baseUrl =
-      'http://$ip:8080/api/facilities'; //Change ip address depend on wifi
+      'https://healthcarerecommend.herokuapp.com/api/facilities'; //Change ip address depend on wifi
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
