@@ -11,3 +11,16 @@ C:\Users\Admin\source\repos\FacilityReccomedManager\Function\obj\Debug\Function.
 C:\Users\Admin\source\repos\FacilityReccomedManager\Function\obj\Debug\Function.csproj.CopyComplete
 C:\Users\Admin\source\repos\FacilityReccomedManager\Function\obj\Debug\Function.exe
 C:\Users\Admin\source\repos\FacilityReccomedManager\Function\obj\Debug\Function.pdb
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\Function.exe.config
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\Function.exe
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\Function.pdb
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\MySql.Data.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\Google.Protobuf.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\BouncyCastle.Crypto.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\Ubiety.Dns.Core.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\Renci.SshNet.dll
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\bin\Debug\MySql.Data.xml
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\obj\Debug\Function.csprojAssemblyReference.cache
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\obj\Debug\Function.csproj.CopyComplete
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\obj\Debug\Function.exe
+E:\Health Care Recomendation Mobile API\FacilityReccomedManager\Function\obj\Debug\Function.pdb
