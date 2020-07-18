@@ -19,8 +19,18 @@ public class SymptomController {
     private SymptomService symptomService;
 
     @GetMapping("/symptoms")
-    public List<Symptoms> listSymptom() {
-        return symptomService.listAll();
+    public ResponseEntity<?> listSymptom() {
+        try {
+            Map<String, List<Symptoms>> result = new HashMap<>();
+            List<Symptoms> listSymptom = symptomService.listAll();
+            if (listSymptom != null){
+                result.put("symptoms", listSymptom);
+                return new ResponseEntity<Map<String, List<Symptoms>>>(result, HttpStatus.OK);                
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/symptoms")
