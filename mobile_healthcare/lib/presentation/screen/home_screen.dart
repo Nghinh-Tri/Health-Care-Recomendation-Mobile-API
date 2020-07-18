@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/api_client/facility/facility_api_client.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/emergency/emergency_bloc.dart';
+import 'package:mobile_healthcare/logic/respository/facility/facility_repos.dart';
 import 'package:mobile_healthcare/model/user/user.dart';
 import 'package:mobile_healthcare/presentation/widgets/home/emergency_button_big.dart';
 import 'package:mobile_healthcare/presentation/widgets/home/home_drawer.dart';
@@ -16,6 +21,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends BaseState<HomeScreen> {
+  static final FacilityRepos facilityRepos = FacilityRepos(
+    apiClient: FacilityAPIClient(
+      httpClient: http.Client(),
+    ),
+  );
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -42,7 +53,10 @@ class _HomeScreenState extends BaseState<HomeScreen> {
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           SearchBar(),
-          EmergencyButtonBig(),
+          BlocProvider(
+            create: (blocContext) => EmergencyBloc(repos: facilityRepos),
+            child: EmergencyButtonBig(),
+          ),
         ],
       ),
     );

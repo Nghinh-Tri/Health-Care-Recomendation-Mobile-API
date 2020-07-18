@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/logic/api_client/user/user_api_client.dart';
@@ -10,7 +11,6 @@ import 'package:mobile_healthcare/logic/bloc/user/sign_up/sign_up_bloc.dart';
 import 'package:mobile_healthcare/logic/respository/user/user_repos.dart';
 import 'package:mobile_healthcare/presentation/screen/signup_screen.dart';
 import 'package:mobile_healthcare/presentation/widgets/common/border_button.dart';
-import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   @override

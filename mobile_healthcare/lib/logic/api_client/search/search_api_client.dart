@@ -1,9 +1,9 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/logic/utility/location_related.dart';
-import 'package:mobile_healthcare/main.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/model/facility_detail/facility_detail_list.dart';
 import 'package:mobile_healthcare/model/search/search_result.dart';
@@ -15,14 +15,13 @@ import 'package:mobile_healthcare/model/symptom/symptom_input.dart';
 import 'package:mobile_healthcare/model/symptom/symptom_list.dart';
 
 class SearchAPIClient {
-  static const baseUrl =
-      'https://healthcarerecommend.herokuapp.com/api'; //Change ip address depend on wifi
+  static const baseUrl = 'https://healthcarerecommend.herokuapp.com/api';
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
   SearchAPIClient({@required this.httpClient}) : assert(httpClient != null);
 
-  //Get the sympyoms and specialities based on user's input
+  //Get user's search results
   Future<List<SearchResult>> getSearchResults(String input) async {
     final symptomsList = await _getSymptoms(SymptomInput(translation: input));
     final specialitiesList =
@@ -37,6 +36,7 @@ class SearchAPIClient {
     return results;
   }
 
+  //Turn symptoms and specialities list to map
   Map<dynamic, String> _turnListToMap(
       SymptomList symptomList, SpecialityList specialityList) {
     Map<Symptom, String> symptomMap = {};
@@ -65,6 +65,7 @@ class SearchAPIClient {
     return maps;
   }
 
+  //Get all symptoms based on user's input
   Future<SymptomList> _getSymptoms(SymptomInput input) async {
     const url = '$baseUrl/symptoms';
 
@@ -80,6 +81,7 @@ class SearchAPIClient {
     return SymptomList.fromJson(symptomsJson);
   }
 
+  //Get all specialities based on user's input
   Future<SpecialityList> _getSpectialities(SpecialityInput input) async {
     const url = '$baseUrl/specialities';
 
@@ -129,7 +131,7 @@ class SearchAPIClient {
     return results;
   }
 
-  //Get facilities based on symptoms's id
+  //Get facilitiesDetails based on symptoms's id
   Future<List<Facility>> getFacilitiesBySymptomID(int input) async {
     final url = '$baseUrl/facilities-details/symptom/$input';
 

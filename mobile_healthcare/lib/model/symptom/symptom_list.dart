@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:mobile_healthcare/model/symptom/symptom.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mobile_healthcare/model/symptom/symptom.dart';
 
 part 'symptom_list.g.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:mobile_healthcare/model/facility_detail/facility_detail.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mobile_healthcare/model/facility_detail/facility_detail.dart';
 
 part 'facility_detail_list.g.dart';
 
