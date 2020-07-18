@@ -2,6 +2,7 @@ import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/logic/api_client/search/search_api_client.dart';
@@ -13,7 +14,6 @@ import 'package:mobile_healthcare/model/search/search_result.dart';
 import 'package:mobile_healthcare/model/speciality/speciality.dart';
 import 'package:mobile_healthcare/model/symptom/symptom.dart';
 import 'package:mobile_healthcare/presentation/screen/search_result_screen.dart';
-import 'package:http/http.dart' as http;
 
 class SearchAppBar extends StatefulWidget {
   @override
@@ -73,7 +73,7 @@ class _SearchAppBarState extends BaseState<SearchAppBar> {
   }
 
   Future<List<SearchResult>> search(String input) async {
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(Duration(milliseconds: 500));
     BlocProvider.of<SearchBloc>(context).add(SearchStarted(input: input));
 
     await Future.delayed(Duration(milliseconds: 2000));

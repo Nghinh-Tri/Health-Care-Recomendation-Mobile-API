@@ -9,7 +9,8 @@ class CustomColors {
   static const backgroundColor = Color.fromRGBO(239, 239, 244, 1);
   static const accentColor = Color.fromRGBO(34, 139, 34, 1);
   static const primaryColor = Color.fromRGBO(50, 205, 50, 1);
-  static const bottomNavigationSelectedButtonColor = Color.fromRGBO(50, 205, 50, 1);
+  static const bottomNavigationSelectedButtonColor =
+      Color.fromRGBO(50, 205, 50, 1);
   static const lineNavigationBottom = Color.fromRGBO(127, 127, 127, 1);
   static const emergencyButton = Color.fromRGBO(220, 20, 60, 1);
   static const phoneIcon = Color.fromRGBO(255, 250, 250, 1);

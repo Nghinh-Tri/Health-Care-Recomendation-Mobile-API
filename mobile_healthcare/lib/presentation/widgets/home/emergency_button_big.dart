@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:mobile_healthcare/common/styles/colors.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/emergency/emergency_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/emergency/emergency_event.dart';
-import 'package:mobile_healthcare/logic/utility/location_related.dart';
-import 'package:mobile_healthcare/model/user/user_location.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/emergency/emergency_state.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class EmergencyButtonBig extends StatefulWidget {
   @override
@@ -25,36 +25,42 @@ class _EmergencyButtonBigState extends BaseState<EmergencyButtonBig> {
   }
 
   Widget _emergencyButton() {
-    return FutureBuilder(
-        future: getCurrentLocation(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Container();
-          }
-
-          final location = snapshot.data;
-
-          return Padding(
-            padding: const EdgeInsets.only(top: Dimens.size150),
-            child: GestureDetector(
-              onLongPress: () => {
-                //BlocProvider.of<>(context).add(EmergencyPress(location: location))
-              },
-              child: ClipOval(
-                child: Container(
-                  color: CustomColors.emergencyButton,
-                  height: Dimens.size120,
-                  width: Dimens.size120,
-                  child: Icon(
-                    Icons.phone,
-                    color: CustomColors.phoneIcon,
-                    size: Dimens.size60,
-                  ),
-                ),
+    return Padding(
+      padding: const EdgeInsets.only(top: Dimens.size150),
+      child: GestureDetector(
+        onLongPress: () => {
+          BlocProvider.of<EmergencyBloc>(context).add(
+            EmergencyCallPressed(),
+          ),
+          Future.delayed(Duration(seconds: 2)),
+          if (BlocProvider.of<EmergencyBloc>(context).state is EmergencySuccess)
+            {
+              launch(
+                "tel:<${BlocProvider.of<EmergencyBloc>(context).returnedFacility.phone}>",
               ),
+            }
+          else if (BlocProvider.of<EmergencyBloc>(context).state
+              is EmergencyFailed)
+            {
+              launch(
+                "tel:<115>",
+              ),
+            }
+        },
+        child: ClipOval(
+          child: Container(
+            color: CustomColors.emergencyButton,
+            height: Dimens.size120,
+            width: Dimens.size120,
+            child: Icon(
+              Icons.phone,
+              color: CustomColors.phoneIcon,
+              size: Dimens.size60,
             ),
-          );
-        });
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buttonLabel() {

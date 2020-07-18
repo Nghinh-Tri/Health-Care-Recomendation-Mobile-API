@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/theme/app_theme.dart';
 
 abstract class ThemeEvent extends Equatable {

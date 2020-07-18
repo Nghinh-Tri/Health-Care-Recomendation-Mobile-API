@@ -6,7 +6,6 @@ import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/action_bar.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/detail.dart';
-import 'package:mobile_healthcare/presentation/widgets/facility_detail/overview.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/rating.dart';
 
 class FacilityDetailScreen extends StatefulWidget {

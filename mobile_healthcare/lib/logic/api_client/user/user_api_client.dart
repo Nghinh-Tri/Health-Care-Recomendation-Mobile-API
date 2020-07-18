@@ -6,13 +6,13 @@ import 'package:mobile_healthcare/model/user/user_login.dart';
 import 'package:mobile_healthcare/model/user/user_signup.dart';
 
 class UserAPIClient {
-  static const baseUrl =
-      'https://healthcarerecommend.herokuapp.com/api/users'; //Change ip address depend on wifi
+  static const baseUrl = 'https://healthcarerecommend.herokuapp.com/api/users';
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
   UserAPIClient({@required this.httpClient}) : assert(httpClient != null);
 
+  //User's login
   Future<User> checkLogin(UserLogin user) async {
     const url = '$baseUrl/login';
     final response = await httpClient.post(url,
@@ -23,9 +23,11 @@ class UserAPIClient {
     }
 
     final userJson = jsonDecode(utf8.decode(response.bodyBytes));
+
     return User.fromJson(userJson);
   }
 
+  //User's signup
   Future<bool> signUp(UserSignUp user) async {
     const url = '$baseUrl/signUp';
     var status = false;
@@ -40,6 +42,7 @@ class UserAPIClient {
     return status;
   }
 
+  //User's edit
   Future<bool> edit(User user) async {
     final url = '$baseUrl/${user.phone}';
     var status = false;

@@ -1,14 +1,15 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_healthcare/common/styles/colors.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile_healthcare/logic/bloc/user/edit/edit_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/user/edit/edit_event.dart';
 import 'package:mobile_healthcare/logic/bloc/user/edit/edit_state.dart';
-import 'dart:ui' as ui;
 import 'package:mobile_healthcare/model/user/user.dart';
 
 class MainCard extends StatefulWidget {

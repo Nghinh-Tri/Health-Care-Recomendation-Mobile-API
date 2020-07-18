@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/logic/api_client/search/search_api_client.dart';
 import 'package:mobile_healthcare/logic/bloc/search/search_bloc.dart';
 import 'package:mobile_healthcare/logic/respository/search/search_repos.dart';
 import 'package:mobile_healthcare/presentation/widgets/search/search_appbar.dart';
-import 'package:http/http.dart' as http;
 
 class SearchScreen extends BaseStatelessWidget {
   static final SearchRepos searchRepos = SearchRepos(
