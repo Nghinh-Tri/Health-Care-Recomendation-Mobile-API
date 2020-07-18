@@ -16,7 +16,7 @@ import 'package:mobile_healthcare/model/symptom/symptom_list.dart';
 
 class SearchAPIClient {
   static const baseUrl =
-      'http://$ip:8080/api'; //Change ip address depend on wifi
+      'https://healthcarerecommend.herokuapp.com/api'; //Change ip address depend on wifi
   static const headers = {'Content-Type': 'application/json'};
   final http.Client httpClient;
 
