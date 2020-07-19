@@ -28,24 +28,23 @@ class _EmergencyButtonBigState extends BaseState<EmergencyButtonBig> {
     return Padding(
       padding: const EdgeInsets.only(top: Dimens.size150),
       child: GestureDetector(
-        onLongPress: () => {
+        onLongPress: () async {
           BlocProvider.of<EmergencyBloc>(context).add(
             EmergencyCallPressed(),
-          ),
-          Future.delayed(Duration(seconds: 2)),
-          if (BlocProvider.of<EmergencyBloc>(context).state is EmergencySuccess)
-            {
-              launch(
-                "tel:<${BlocProvider.of<EmergencyBloc>(context).returnedFacility.phone}>",
-              ),
-            }
-          else if (BlocProvider.of<EmergencyBloc>(context).state
-              is EmergencyFailed)
-            {
-              launch(
-                "tel:<115>",
-              ),
-            }
+          );
+          await Future.delayed(Duration(seconds: 3));
+
+          if (BlocProvider.of<EmergencyBloc>(context).state
+              is EmergencySuccess) {
+            launch(
+              "tel:<${BlocProvider.of<EmergencyBloc>(context).returnedFacility.phone}>",
+            );
+          } else if (BlocProvider.of<EmergencyBloc>(context).state
+              is EmergencyFailed) {
+            launch(
+              "tel:<115>",
+            );
+          }
         },
         child: ClipOval(
           child: Container(
