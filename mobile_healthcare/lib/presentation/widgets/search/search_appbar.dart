@@ -73,10 +73,10 @@ class _SearchAppBarState extends BaseState<SearchAppBar> {
   }
 
   Future<List<SearchResult>> search(String input) async {
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(Duration(seconds: 1));
     BlocProvider.of<SearchBloc>(context).add(SearchStarted(input: input));
 
-    await Future.delayed(Duration(milliseconds: 2000));
+    await Future.delayed(Duration(seconds: 2));
     if (BlocProvider.of<SearchBloc>(context).state is SearchSuccess) {
       return BlocProvider.of<SearchBloc>(context).returnedList;
     }

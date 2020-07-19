@@ -29,7 +29,9 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
       body: ListView(
         children: <Widget>[
           _image(),
-          ActionBar(),
+          ActionBar(
+            facility: widget.facility,
+          ),
           _label(
             label: translator.text("facility_detail"),
             isVisible: false, //Check visible
