@@ -1,7 +1,6 @@
 package moblie.api.services;
 
 import moblie.api.entities.Specialities;
-import moblie.api.entities.Symptoms;
 import moblie.api.repositories.SpecialitiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

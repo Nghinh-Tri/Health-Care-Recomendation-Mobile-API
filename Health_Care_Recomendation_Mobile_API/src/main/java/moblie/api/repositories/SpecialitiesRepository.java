@@ -1,7 +1,6 @@
 package moblie.api.repositories;
 
 import moblie.api.entities.Specialities;
-import moblie.api.entities.Symptoms;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -15,9 +15,7 @@ public class Facilities {
     private String image;
 
     public Facilities() {
-    }
-
-    
+    }    
 
     public int getId() {
         return id;
