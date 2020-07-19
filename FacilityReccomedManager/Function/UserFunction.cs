@@ -10,7 +10,7 @@ namespace Function
 {
     public static class UserFunction
     {
-        static string connection = @"server=localhost;user id=root;database=healthcaredb;password=12345";
+        static string connection = @"server=34.87.101.18;user id=tritnse130094;database=healthcaredb;password=GNM2mCCCjcAHb6ui";
         static MySqlConnection con;
         static MySqlCommand cmd;
         static MySqlDataReader reader;
