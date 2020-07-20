@@ -18,8 +18,8 @@ public class RatingsService {
 		ratingsRespository.save(rating);
 	}
 	
-	public List<Ratings> loadRatings(int facilityID){
-		return ratingsRespository.loadRatings(facilityID);
+	public List<Ratings> getListRatingsByFacilityID(int facilityID){
+		return ratingsRespository.getListRatingsByFacilityID(facilityID);
 	}
 	
 	public Ratings isExist(String phone, int facilityID) {

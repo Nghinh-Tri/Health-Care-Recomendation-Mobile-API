@@ -1,14 +1,16 @@
 package moblie.api.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,26 +26,28 @@ public class RatingsController {
 	@Autowired
 	private RatingsService service;
 
-	@PostMapping("/ratings")
-	public ResponseEntity<?> loadComments(@RequestBody Ratings rating) {
+	//load list rating by fac id
+	@GetMapping("/ratings/{facilityId}")
+	public ResponseEntity<?> getListRatingOfFacility(@PathVariable String facilityId){
 		try {
-			if (rating.getFacility_id() > 0) {
-				List<Ratings> ratings = service.loadRatings(rating.getFacility_id());
-				if (!ratings.isEmpty()) {
-					return new ResponseEntity<List<Ratings>>(ratings, HttpStatus.OK);
-				}
-				throw new Exception();
+			Map<String,List<Ratings>> result = new HashMap<>();
+			List<Ratings> list = service.getListRatingsByFacilityID(Integer.parseInt(facilityId));
+			if (list != null){
+				result.put("ratings", list);				
+				return new ResponseEntity<Map<String,List<Ratings>>>(result,HttpStatus.OK);
 			}
-			throw new Exception();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@PostMapping("/rate")
-	public ResponseEntity<?> rate(@RequestBody Ratings rating) {
-		try {
-			if (rating.getRate() > 0 && rating.getUser_id().trim().length() > 0 && rating.getFacility_id() > 0) {
+	//insert rating 
+	@PostMapping("/ratings/insert")
+	public ResponseEntity<?> insertRating(@RequestBody Ratings rating) {
+		try {			
+			Ratings find = service.isExist(rating.getUser_id(), rating.getFacility_id());
+			if (find == null) {				
 				service.save(rating);
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
@@ -53,26 +57,17 @@ public class RatingsController {
 		}
 	}
 
-	@PutMapping("/ratings/{information}")
-	public ResponseEntity<?> editRating(@RequestBody Ratings rating, @PathVariable String information) {
-		try {
-			int pos = -1;
-			for (int i = 0; i < information.length(); i++) {
-				if (information.charAt(i) == '&')
-					pos = i;
-			}
-			String phone = information.substring(0, pos);
-			int facilityID = Integer.parseInt(information.substring(pos + 1, information.length()));
-			Ratings find = service.isExist(phone, facilityID);
-			if (find != null) {
+	//edit rating by phone and fac id
+	@PostMapping("/ratings/edit")
+	public ResponseEntity<?> editRating(@RequestBody Ratings rating) {
+		try {			
+			Ratings find = service.isExist(rating.getUser_id(), rating.getFacility_id());
+			if (find != null) {			
 				rating.setId(find.getId());
-				rating.setUser_id(phone);
-				rating.setFacility_id(facilityID);
-				rating.setRate(rating.getRate());
-				service.save(rating);
+				service.save(rating);;
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
-			throw new Exception();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
