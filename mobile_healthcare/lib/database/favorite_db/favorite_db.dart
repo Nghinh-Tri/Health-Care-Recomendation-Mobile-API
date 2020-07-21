@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:mobile_healthcare/model/facility/facility.dart';
-import 'package:mobile_healthcare/model/facility/facility_sqlite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -9,7 +8,7 @@ import 'package:sqflite/sqlite_api.dart';
 
 class DatabaseFavoriteCreator {
   static const table = 'facility';
-  static const dbName = 'healthcare.db';
+  static const dbName = 'healthcarefavorite.db';
 
   static const id = 'id';
   static const name = 'name';
@@ -18,7 +17,6 @@ class DatabaseFavoriteCreator {
   static const latitude = 'latitude';
   static const longtitude = 'longtitude';
   static const image = 'image';
-  static const like = 'like';
   static const createQuery = '''CREATE TABLE if not exists $table
       (
         $id INTERGER PRIMARY KEY, 
@@ -27,8 +25,7 @@ class DatabaseFavoriteCreator {
         $phone TEXT, 
         $latitude REAL, 
         $longtitude REAL, 
-        $image TEXT,
-        $like INTERGER)''';
+        $image TEXT)''';
 
   DatabaseFavoriteCreator._();
 
@@ -52,45 +49,33 @@ class DatabaseFavoriteCreator {
     });
   }
 
-  static Future<int> addLikedFacility(Facility facility) async {
+  static Future<int> addFavoriteFacility(Facility facility) async {
     final db = await database;
-    FacilitySQLite fac = FacilitySQLite(
-        facility.id,
-        facility.name,
-        facility.address,
-        facility.phone,
-        facility.latitude,
-        facility.longtitude,
-        facility.image,
-        1);
-    var dupilcated = await getLikedFacility(fac.id);
+    var dupilcated = await getFacility(facility.id);
     if (dupilcated == null) {
-      return await db.insert(table, fac.toJson());
+      var res = await db.insert(table, facility.toJson());
+      return res;
     }
     return -1;
   }
 
-  static Future<FacilitySQLite> getLikedFacility(int id) async {
+  static Future<Facility> getFacility(int id) async {
     final db = await database;
     var res = await db.query(table, where: "id = ?", whereArgs: [id]);
-    return res.isNotEmpty ? FacilitySQLite.fromJson(res.first) : null;
+    return res.isNotEmpty ? Facility.fromJson(res.first) : null;
   }
 
-  static Future<List<FacilitySQLite>> getAllLikedFacilities() async {
+  static Future<List<Facility>> getAllFacilities() async {
     final db = await database;
-    var res = await db.query(table, where: "id = ?", whereArgs: [id]);
-    List<FacilitySQLite> list = res.isNotEmpty
-        ? res.map((c) => FacilitySQLite.fromJson(c)).toList()
-        : [];
+    var res = await db.query(table);
+    List<Facility> list =
+        res.isNotEmpty ? res.map((c) => Facility.fromJson(c)).toList() : [];
     return list;
   }
 
   static Future<int> deleteFacility(int id) async {
     final db = await database;
-    var find = getLikedFacility(id);
-    if (find != null) {
-      return db.delete(table, where: "id = ?", whereArgs: [id]);
-    }
-    return -1;
+    var res = db.delete(table, where: "id = ?", whereArgs: [id]);
+    return res;
   }
 }

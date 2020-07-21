@@ -8,7 +8,7 @@ import 'package:sqflite/sqlite_api.dart';
 
 class DatabaseHadSeenCreator {
   static const table = 'facility';
-  static const dbName = 'healthcare.db';
+  static const dbName = 'healthcarehadseen.db';
 
   static const id = 'id';
   static const name = 'name';
@@ -19,12 +19,12 @@ class DatabaseHadSeenCreator {
   static const image = 'image';
   static const createQuery = '''CREATE TABLE if not exists $table
       (
-        $id INTERGER PRIMARY KEY, 
+        $id INTERGER PRIMARY KEY,
         $name TEXT, 
         $address TEXT, 
         $phone TEXT, 
         $latitude REAL, 
-        $longtitude REAL, 
+        $longtitude REAL,
         $image TEXT)''';
 
   DatabaseHadSeenCreator._();

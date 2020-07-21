@@ -6,14 +6,14 @@ import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_event.dart';
+import 'package:mobile_healthcare/logic/bloc/rating/rating_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_state.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/presentation/screen/rating_screen.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/action_bar.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/detail.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/rating.dart';
-import 'package:mobile_healthcare/logic/bloc/rating/rating_bloc.dart';
-import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
-import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_state.dart';
 
 class FacilityDetailScreen extends StatefulWidget {
   final Facility facility;

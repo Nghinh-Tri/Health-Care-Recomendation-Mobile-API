@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:mobile_healthcare/model/facility/facility_sqlite.dart';
+import 'package:mobile_healthcare/model/facility/facility.dart';
 
 abstract class FavoriteEvent extends Equatable {
   const FavoriteEvent();
@@ -19,7 +19,7 @@ class FavoritePress extends FavoriteEvent {
 }
 
 class FavoriteAddPress extends FavoriteEvent {
-  final FacilitySQLite facility;
+  final Facility facility;
 
   FavoriteAddPress(@required this.facility);
 

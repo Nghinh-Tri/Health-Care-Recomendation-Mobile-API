@@ -6,13 +6,12 @@ import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/database/had_seen_db/had_seen_provider.dart';
-
-import 'package:mobile_healthcare/model/facility/facility.dart';
-import 'package:mobile_healthcare/presentation/screen/facility_detail_screen.dart';
-import 'package:mobile_healthcare/database/repository_sqlite.dart';
 import 'package:mobile_healthcare/logic/api_client/rating/rating_api_client.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/rating/rating_bloc.dart';
 import 'package:mobile_healthcare/logic/respository/rating/rating_repos.dart';
+import 'package:mobile_healthcare/model/facility/facility.dart';
+import 'package:mobile_healthcare/presentation/screen/facility_detail_screen.dart';
 
 class FacilityCard extends BaseStatelessWidget {
   final Facility facility;
@@ -32,10 +31,17 @@ class FacilityCard extends BaseStatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (routeContext) => BlocProvider(
-              create: (blocContext) => RatingBloc(
-                repos: ratingRepos,
-              ),
+            builder: (routeContext) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (blocContext) => RatingBloc(
+                    repos: ratingRepos,
+                  ),
+                ),
+                BlocProvider(
+                  create: (blocContext) => FavoriteBloc(),
+                ),
+              ],
               child: FacilityDetailScreen(
                 facility: facility,
               ),
@@ -69,10 +75,6 @@ class FacilityCard extends BaseStatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: Dimens.size5),
       child: Column(
         children: <Widget>[
-          // BlocProvider.of<FavoriteBloc>(context).add(FavoritePress),
-          //   create: (context) => FavoriteBloc..add(FavoritePress),
-          //   child: _image(),
-          // ),
           _image(),
           Padding(
             padding: const EdgeInsets.only(top: Dimens.size5),
