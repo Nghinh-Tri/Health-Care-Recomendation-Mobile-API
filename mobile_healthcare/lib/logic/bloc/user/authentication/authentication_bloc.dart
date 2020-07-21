@@ -1,9 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_event.dart';
 import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_state.dart';
+import 'package:mobile_healthcare/model/user/user.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
+  User user;
+
   AuthenticationBloc();
 
   @override
@@ -15,6 +18,7 @@ class AuthenticationBloc
       AuthenticationEvent event) async* {
     // TODO: implement mapEventToState
     if (event is AuthenticationLoggedIn) {
+      user = event.user;
       yield AuthenticationSuccess(user: event.user);
     }
 

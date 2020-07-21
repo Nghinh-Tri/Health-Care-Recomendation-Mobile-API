@@ -1,14 +1,24 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/database/repository_sqlite.dart';
+import 'package:mobile_healthcare/logic/api_client/rating/rating_api_client.dart';
+import 'package:mobile_healthcare/logic/bloc/rating/rating_bloc.dart';
+import 'package:mobile_healthcare/logic/respository/rating/rating_repos.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/presentation/screen/facility_detail_screen.dart';
 
 class FacilityCard extends BaseStatelessWidget {
   final Facility facility;
+  static final RatingRepos ratingRepos = RatingRepos(
+    apiClient: RatingAPIClient(
+      httpClient: http.Client(),
+    ),
+  );
 
   FacilityCard({@required this.facility});
 
@@ -20,8 +30,13 @@ class FacilityCard extends BaseStatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (routeContext) => FacilityDetailScreen(
-              facility: facility,
+            builder: (routeContext) => BlocProvider(
+              create: (blocContext) => RatingBloc(
+                repos: ratingRepos,
+              ),
+              child: FacilityDetailScreen(
+                facility: facility,
+              ),
             ),
           ),
         ),

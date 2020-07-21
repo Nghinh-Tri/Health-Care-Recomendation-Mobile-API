@@ -32,18 +32,21 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           if (state is LoadedThemeState) {
-            return MaterialApp(
-              color: Theme.of(context).backgroundColor,
-              title: "Mobile Project",
-              theme: state.themeData,
-              localizationsDelegates: [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              debugShowCheckedModeBanner: false,
-              supportedLocales: translator.supportedLocales(),
-              initialRoute: getInitialRoute(),
-              routes: buildRoutes(),
+            return BlocProvider(
+              create: (blocContext) => AuthenticationBloc(),
+              child: MaterialApp(
+                color: Theme.of(context).backgroundColor,
+                title: "Mobile Project",
+                theme: state.themeData,
+                localizationsDelegates: [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                ],
+                debugShowCheckedModeBanner: false,
+                supportedLocales: translator.supportedLocales(),
+                initialRoute: getInitialRoute(),
+                routes: buildRoutes(),
+              ),
             );
           }
 
@@ -61,10 +64,7 @@ class MyApp extends StatelessWidget {
 
   Map<String, WidgetBuilder> buildRoutes() {
     return {
-      '/': (context) => BlocProvider(
-            create: (blocContext) => AuthenticationBloc(),
-            child: Home(),
-          ),
+      '/': (context) => Home(),
     };
   }
 }

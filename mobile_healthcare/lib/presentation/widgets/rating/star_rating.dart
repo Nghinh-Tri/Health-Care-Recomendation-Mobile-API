@@ -43,6 +43,10 @@ class StarRating extends StatelessWidget {
 }
 
 class StarRatingStateful extends StatelessWidget {
+  final Function(int) _getRating;
+
+  StarRatingStateful(this._getRating);
+
   @override
   Widget build(BuildContext context) {
     int rating = 0;
@@ -53,6 +57,7 @@ class StarRatingStateful extends StatelessWidget {
             setState(
               () {
                 rating = index;
+                _getRating(rating);
               },
             );
           },
