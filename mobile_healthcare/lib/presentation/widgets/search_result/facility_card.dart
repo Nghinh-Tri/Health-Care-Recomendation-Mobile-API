@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
-import 'package:mobile_healthcare/database/repository_sqlite.dart';
+import 'package:mobile_healthcare/database/had_seen_db/had_seen_provider.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/presentation/screen/facility_detail_screen.dart';
 
@@ -16,7 +16,7 @@ class FacilityCard extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        RepositoryServiceSQLite.addFacility(facility),
+        HadSeenDBRepositoryServiceSQLite.addFacility(facility),
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -39,7 +39,7 @@ class FacilityCard extends BaseStatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            _leftColumn(),
+            _leftColumn(context),
             _centerColumn(context),
           ],
         ),
@@ -47,11 +47,15 @@ class FacilityCard extends BaseStatelessWidget {
     );
   }
 
-  Widget _leftColumn() {
+  Widget _leftColumn(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: Dimens.size5),
       child: Column(
         children: <Widget>[
+          // BlocProvider.of<FavoriteBloc>(context).add(FavoritePress),
+          //   create: (context) => FavoriteBloc..add(FavoritePress),
+          //   child: _image(),
+          // ),
           _image(),
           Padding(
             padding: const EdgeInsets.only(top: Dimens.size5),

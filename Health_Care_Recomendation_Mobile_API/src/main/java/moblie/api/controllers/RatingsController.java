@@ -43,31 +43,18 @@ public class RatingsController {
 	}
 
 	//insert rating 
-	@PostMapping("/ratings/insert")
+	@PostMapping("/ratings")
 	public ResponseEntity<?> insertRating(@RequestBody Ratings rating) {
 		try {			
 			Ratings find = service.isExist(rating.getUser_id(), rating.getFacility_id());
 			if (find == null) {				
 				service.save(rating);
 				return new ResponseEntity<>(HttpStatus.OK);
-			}
-			throw new Exception();
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-	//edit rating by phone and fac id
-	@PostMapping("/ratings/edit")
-	public ResponseEntity<?> editRating(@RequestBody Ratings rating) {
-		try {			
-			Ratings find = service.isExist(rating.getUser_id(), rating.getFacility_id());
-			if (find != null) {			
+			}else{
 				rating.setId(find.getId());
 				service.save(rating);;
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
-import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_bloc.dart';
-import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_state.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_state.dart';
 import 'package:mobile_healthcare/presentation/widgets/common/app_bar.dart';
 import 'package:mobile_healthcare/presentation/widgets/common/facility_card_custom.dart';
 
@@ -18,19 +18,19 @@ class FavoritesScreen extends BaseStatelessWidget {
           ),
           preferredSize: const Size.fromHeight(Dimens.appbarHeight),
         ),
-        body: BlocBuilder<HadSeenBloc, HadSeenState>(builder: (context, state) {
-          if (state is HadSeenSuccess) {
+        body:
+            BlocBuilder<FavoriteBloc, FavoriteState>(builder: (context, state) {
+          if (state is FavoriteSuccess) {
             return ListView(
               children: <Widget>[
                 for (var facility in state.listFacility)
-                  FacilityCardCustom(facility),
+                  FacilityCardCustom.FacilitySQLite(facility),
               ],
             );
           }
-          if (state is HadSeenFailed) {
+          if (state is FavoriteInitial) {
             return Container();
           }
-          if (state is HadSeenInitial) return Container();
         }));
   }
 }

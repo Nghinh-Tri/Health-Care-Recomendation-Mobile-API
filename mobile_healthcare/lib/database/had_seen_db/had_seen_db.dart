@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 
-class DatabaseCreator {
+class DatabaseHadSeenCreator {
   static const table = 'facility';
   static const dbName = 'healthcare.db';
 
@@ -27,9 +27,9 @@ class DatabaseCreator {
         $longtitude REAL, 
         $image TEXT)''';
 
-  DatabaseCreator._();
+  DatabaseHadSeenCreator._();
 
-  static final DatabaseCreator db = DatabaseCreator._();
+  static final DatabaseHadSeenCreator db = DatabaseHadSeenCreator._();
   static Database _database;
 
   static Future<Database> get database async {
@@ -49,13 +49,14 @@ class DatabaseCreator {
     });
   }
 
-  static Future<int> addFacility(Facility facility) async {
+  static Future<int> addHadSeenFacility(Facility facility) async {
     final db = await database;
     var dupilcated = await getFacility(facility.id);
     if (dupilcated == null) {
       var res = await db.insert(table, facility.toJson());
       return res;
     }
+    return -1;
   }
 
   static Future<Facility> getFacility(int id) async {
