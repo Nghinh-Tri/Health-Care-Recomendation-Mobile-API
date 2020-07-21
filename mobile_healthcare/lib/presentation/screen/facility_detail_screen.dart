@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_event.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/action_bar.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/detail.dart';
@@ -94,7 +97,10 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
                 size: Dimens.size30,
               ),
               color: Theme.of(context).cardColor,
-              onPressed: () => {},
+              onPressed: () => {
+                BlocProvider.of<FavoriteBloc>(context)
+                    .add(FavoriteAddPress(widget.facility))
+              },
             ),
           ],
         ),
@@ -102,6 +108,7 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
     );
   }
 
+  //favorite
   Widget _image() {
     return Container(
       height: Dimens.imageHeight,

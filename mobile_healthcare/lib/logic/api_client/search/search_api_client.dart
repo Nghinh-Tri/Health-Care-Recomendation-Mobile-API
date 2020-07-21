@@ -26,7 +26,6 @@ class SearchAPIClient {
     final symptomsList = await _getSymptoms(SymptomInput(translation: input));
     final specialitiesList =
         await _getSpectialities(SpecialityInput(translation: input));
-
     Map<dynamic, String> maps = _turnListToMap(symptomsList, specialitiesList);
 
     List<SearchResult> results = maps.entries

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_event.dart';
 import 'package:mobile_healthcare/logic/bloc/search/search_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/search/search_state.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
@@ -19,7 +21,7 @@ class SearchResultScreen extends BaseStatelessWidget {
       body: BlocBuilder<SearchBloc, SearchState>(
         builder: (blocContext, state) {
           if (state is SearchHasData) {
-            return _listResults(state.results);
+            return _listResults(state.results, blocContext);
           }
 
           if (state is SearchFailed) {
@@ -84,13 +86,16 @@ class SearchResultScreen extends BaseStatelessWidget {
     );
   }
 
-  Widget _listResults(List<Facility> list) {
+  Widget _listResults(List<Facility> list, BuildContext context) {
     return ListView(
       children: <Widget>[
         for (var item in list)
-          FacilityCard(
-            facility: item,
-          ),
+          BlocProvider(
+            create: (context) => FavoriteBloc()..add(FavoritePress()),
+            child: FacilityCard(
+              facility: item,
+            ),
+          )
       ],
     );
   }

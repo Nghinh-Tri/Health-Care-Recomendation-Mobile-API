@@ -94,42 +94,6 @@ class HomeDrawer extends BaseStatelessWidget {
               ),
             ),
             child: ListTile(
-              leading: Icon(Icons.favorite),
-              title: Text(
-                translator.text("marked"),
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.headline6.color,
-                ),
-              ),
-              onTap: () => {Navigator.of(context).pop()},
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom:
-                    BorderSide(style: BorderStyle.solid, width: Dimens.thick02),
-              ),
-            ),
-            child: ListTile(
-              leading: Icon(Icons.remove_red_eye),
-              title: Text(
-                translator.text("seen"),
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.headline6.color,
-                ),
-              ),
-              onTap: () => {Navigator.of(context).pop()},
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom:
-                    BorderSide(style: BorderStyle.solid, width: Dimens.thick02),
-              ),
-            ),
-            child: ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text(
                 user != null
