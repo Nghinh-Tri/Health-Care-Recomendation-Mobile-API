@@ -2,7 +2,7 @@ import mysql.connector
 # install package mysql python connector
 def connect():
     conn = mysql.connector.connect(host='34.87.101.18',
-                                    database='healthcare',
+                                    database='healthcaredb',
                                     user='tritnse130094',
                                     password='GNM2mCCCjcAHb6ui',
                                     use_unicode=True,
