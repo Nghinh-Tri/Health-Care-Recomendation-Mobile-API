@@ -10,27 +10,35 @@ import 'package:mobile_healthcare/presentation/widgets/common/facility_card_cust
 class SeenRecentlyScreen extends BaseStatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // ignore: close_sinks
+    final hadSeenBloc = BlocProvider.of<HadSeenBloc>(context);
+
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
-        appBar: PreferredSize(
-          child: CustomAppBar(
-            title: translator.text("seen"),
-          ),
-          preferredSize: const Size.fromHeight(Dimens.appbarHeight),
+      backgroundColor: Theme.of(context).backgroundColor,
+      appBar: PreferredSize(
+        child: CustomAppBar(
+          title: translator.text("seen"),
         ),
-        body: BlocBuilder<HadSeenBloc, HadSeenState>(builder: (context, state) {
+        preferredSize: const Size.fromHeight(Dimens.appbarHeight),
+      ),
+      body: BlocBuilder<HadSeenBloc, HadSeenState>(
+        builder: (blocContext, state) {
           if (state is HadSeenSuccess) {
             return ListView(
               children: <Widget>[
                 for (var facility in state.listFacility)
-                  FacilityCardCustom.Facility(facility),
+                  FacilityCardCustom.HadSeen(
+                    facility: facility,
+                    bloc: hadSeenBloc,
+                  ),
               ],
             );
           }
-          if (state is HadSeenFailed) {
-            return Container();
-          }
-          if (state is HadSeenInitial) return Container();
-        }));
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
+    );
   }
 }

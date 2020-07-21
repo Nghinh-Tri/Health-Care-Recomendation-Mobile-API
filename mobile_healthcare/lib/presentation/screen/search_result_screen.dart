@@ -90,12 +90,9 @@ class SearchResultScreen extends BaseStatelessWidget {
     return ListView(
       children: <Widget>[
         for (var item in list)
-          BlocProvider(
-            create: (context) => FavoriteBloc()..add(FavoritePress()),
-            child: FacilityCard(
-              facility: item,
-            ),
-          )
+          FacilityCard(
+            facility: item,
+          ),
       ],
     );
   }

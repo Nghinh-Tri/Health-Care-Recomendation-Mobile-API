@@ -15,7 +15,6 @@ Facility _$FacilityFromJson(Map<String, dynamic> json) {
     latitude: (json['latitude'] as num)?.toDouble(),
     longtitude: (json['longtitude'] as num)?.toDouble(),
     image: json['image'] as String,
-    distanceToUser: (json['distanceToUser'] as num)?.toDouble(),
   );
 }
 
@@ -27,5 +26,4 @@ Map<String, dynamic> _$FacilityToJson(Facility instance) => <String, dynamic>{
       'latitude': instance.latitude,
       'longtitude': instance.longtitude,
       'image': instance.image,
-      'distanceToUser': instance.distanceToUser,
     };

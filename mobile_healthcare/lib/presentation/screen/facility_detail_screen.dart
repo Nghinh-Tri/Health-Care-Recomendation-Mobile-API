@@ -6,7 +6,11 @@ import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_event.dart';
+import 'package:mobile_healthcare/logic/bloc/rating/rating_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/user/authentication/authentication_state.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
+import 'package:mobile_healthcare/presentation/screen/rating_screen.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/action_bar.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/detail.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/rating.dart';
@@ -21,9 +25,17 @@ class FacilityDetailScreen extends StatefulWidget {
 }
 
 class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
+    // ignore: close_sinks
+    final authenBloc = BlocProvider.of<AuthenticationBloc>(context);
+    // ignore: close_sinks
+    final ratingBloc = BlocProvider.of<RatingBloc>(context);
+
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: PreferredSize(
         child: _appBar(context),
@@ -45,8 +57,12 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
           _label(
             label: translator.text("facility_user_rating"),
             isVisible: true, //Check visible
+            authenBloc: authenBloc,
+            ratingBloc: ratingBloc,
           ),
-          Rating(),
+          Rating(
+            id: widget.facility.id,
+          ),
         ],
       ),
     );
@@ -119,7 +135,11 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
     );
   }
 
-  Widget _label({String label, bool isVisible}) {
+  Widget _label(
+      {String label,
+      bool isVisible,
+      AuthenticationBloc authenBloc,
+      RatingBloc ratingBloc}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -134,7 +154,36 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
         ),
         if (isVisible)
           GestureDetector(
-            onTap: () => {},
+            onTap: () => {
+              if (authenBloc.state is AuthenticationSuccess)
+                {
+                  Navigator.of(context).push(
+                    MaterialPageRoute<RatingBloc>(
+                      builder: (routeContext) {
+                        return BlocProvider.value(
+                          value: ratingBloc,
+                          child: RatingScreen(
+                            facility: widget.facility,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                }
+              else if (authenBloc.state is AuthenticationInitial)
+                {
+                  _scaffoldKey.currentState
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(
+                          translator.text("rating_failed"),
+                        ),
+                      ),
+                    ),
+                }
+            },
             child: Padding(
               padding: const EdgeInsets.only(
                 right: Dimens.size20,

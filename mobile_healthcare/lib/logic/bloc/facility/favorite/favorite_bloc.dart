@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/database/favorite_db/favorite_provider.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_event.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_state.dart';
-import 'package:mobile_healthcare/model/facility/facility_sqlite.dart';
+import 'package:mobile_healthcare/model/facility/facility.dart';
 
 class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   FavoriteBloc();
@@ -14,7 +14,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   @override
   Stream<FavoriteState> mapEventToState(FavoriteEvent event) async* {
     if (event is FavoritePress) {
-      List<FacilitySQLite> list =
+      List<Facility> list =
           await FavoriteDBRepositoryServiceSQLite.getAllFacility();
       if (list != null) {
         yield FavoriteSuccess(listFacility: list);
@@ -22,17 +22,19 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
         yield FavoriteInitial();
       }
     }
+
     if (event is FavoriteDeletePress) {
       int result =
           await FavoriteDBRepositoryServiceSQLite.deleteFacility(event.id);
       if (result == 1) {
-        List<FacilitySQLite> list =
+        List<Facility> list =
             await FavoriteDBRepositoryServiceSQLite.getAllFacility();
         if (list != null) yield FavoriteSuccess(listFacility: list);
       } else {
         yield FavoriteInitial();
       }
     }
+
     if (event is FavoriteAddPress) {
       await FavoriteDBRepositoryServiceSQLite.addFacility(event.facility);
     }

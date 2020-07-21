@@ -12,7 +12,9 @@ class HadSeenInitial extends HadSeenState {}
 
 class HadSeenSuccess extends HadSeenState {
   final List<Facility> listFacility;
+
   HadSeenSuccess({@required this.listFacility});
+
   @override
   // TODO: implement props
   List<Object> get props => [listFacility];

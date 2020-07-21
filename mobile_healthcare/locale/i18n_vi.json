@@ -43,5 +43,7 @@
     "signup_success": "Đăng ký thành công. Nhấn BACK để quay lại",
     "edit_failure": "Cập nhật thông tin thất bại",
     "edit_success": "Cập nhật thông tin thành công. Nhấn BACK để quay lại",
-    "search_error": "Không có kết quả phù hợp"
+    "search_error": "Không có kết quả phù hợp",
+    "rating_failed": "Bạn cần đăng nhập để sử dụng chức năng này",
+    "rating_no_data": "Hiện chưa được người dùng đánh giá"
 }

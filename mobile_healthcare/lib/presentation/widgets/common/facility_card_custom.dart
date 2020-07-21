@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
@@ -7,14 +9,13 @@ import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_event.da
 import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_event.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
-import 'package:mobile_healthcare/model/facility/facility_sqlite.dart';
 
 class FacilityCardCustom extends BaseStatelessWidget {
-  Facility facility;
-  FacilitySQLite facilitySQLite;
+  final Facility facility;
+  var bloc;
 
-  FacilityCardCustom.Facility(this.facility);
-  FacilityCardCustom.FacilitySQLite(this.facility);
+  FacilityCardCustom.HadSeen({this.facility, this.bloc});
+  FacilityCardCustom.Favorite({this.facility, this.bloc});
 
   @override
   Widget build(BuildContext context) {
@@ -31,77 +32,73 @@ class FacilityCardCustom extends BaseStatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          _leftColumn(),
-          _centerColumn(),
+          _leftColumn(context),
+          _centerColumn(context),
           _rightColumn(context),
         ],
       ),
     );
   }
 
-  Widget _leftColumn() {
+  Widget _leftColumn(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Dimens.size20),
-      child: Icon(Icons.local_hospital),
+      padding: const EdgeInsets.symmetric(horizontal: Dimens.size5),
+      child: _image(),
     );
   }
 
-  Widget _centerColumn() {
-    if (facility != null) {
-      return Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: Dimens.size5),
-              child: Text(
-                facility.name,
-              ),
-            ), //Facility's name
-            _subRow(
-              Icons.location_on,
-              facility.address,
-            ), //Facility's address
-            _subRow(
-              Icons.check_circle_outline,
-              facility.phone,
-            ), //Facility's phone
-          ],
-        ),
-      );
-    }
-    if (facilitySQLite != null) {
-      return Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: Dimens.size5),
-              child: Text(
-                facilitySQLite.name,
-              ),
-            ), //Facility's name
-            _subRow(
-              Icons.location_on,
-              facilitySQLite.address,
-            ), //Facility's address
-            _subRow(
-              Icons.check_circle_outline,
-              facilitySQLite.phone,
-            ), //Facility's phone
-          ],
-        ),
-      );
-    }
+  Widget _image() {
+    return Container(
+      height: Dimens.miniImage,
+      child: Image.memory(
+        base64.decode(facility.image.split(",").last),
+        fit: BoxFit.fill,
+      ),
+    );
   }
 
-  Widget _subRow(IconData icon, String content) {
+  Widget _centerColumn(BuildContext context) {
+    return Expanded(
+      flex: 8,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(
+              top: Dimens.size5,
+              bottom: Dimens.size5,
+              left: Dimens.size30,
+            ),
+            child: Text(
+              facility.name,
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          ), //Facility's name
+          _subRow(
+            context,
+            Icons.location_on,
+            facility.address,
+          ), //Facility's address
+          _subRow(
+            context,
+            Icons.phone,
+            facility.phone,
+          ), //Facility's working hour
+        ],
+      ),
+    );
+  }
+
+  Widget _subRow(BuildContext context, IconData icon, String content) {
     return Padding(
       padding: const EdgeInsets.only(bottom: Dimens.size5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Icon(icon),
+          Icon(
+            icon,
+            color: Theme.of(context).accentColor,
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: Dimens.size5),
@@ -121,19 +118,20 @@ class FacilityCardCustom extends BaseStatelessWidget {
   Widget _rightColumn(BuildContext context) {
     return Expanded(
       child: IconButton(
-          icon: Icon(Icons.close),
-          onPressed: () => {
-                if (BlocProvider.of(context) is HadSeenBloc)
-                  {
-                    BlocProvider.of<HadSeenBloc>(context)
-                        .add(HadSeenDeletePress(facility.id))
-                  },
-                if (BlocProvider.of(context) is FavoriteBloc)
-                  {
-                    BlocProvider.of<FavoriteBloc>(context)
-                        .add(FavoriteDeletePress(facility.id))
-                  }
-              }),
+        icon: Icon(Icons.close),
+        onPressed: () => {
+          if (bloc is HadSeenBloc)
+            {
+              BlocProvider.of<HadSeenBloc>(context)
+                  .add(HadSeenDeletePress(facility.id))
+            }
+          else if (bloc is FavoriteBloc)
+            {
+              BlocProvider.of<FavoriteBloc>(context)
+                  .add(FavoriteDeletePress(facility.id))
+            }
+        },
+      ),
     );
   }
 }

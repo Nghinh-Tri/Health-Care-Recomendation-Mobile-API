@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/rating/rating_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/rating/rating_event.dart';
+import 'package:mobile_healthcare/logic/bloc/rating/rating_state.dart';
 import 'package:mobile_healthcare/presentation/widgets/facility_detail/stars.dart';
 
 class Rating extends StatefulWidget {
+  final int id;
+
+  Rating({@required this.id});
+
   @override
   _RatingState createState() => _RatingState();
 }
 
 class _RatingState extends BaseState<Rating> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BlocProvider.of<RatingBloc>(context).add(
+      GetRatings(facilityID: widget.id),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,20 +43,34 @@ class _RatingState extends BaseState<Rating> {
         borderRadius: BorderRadius.circular(Dimens.size8),
         color: Theme.of(context).cardColor,
       ),
-      child: Column(
-        children: <Widget>[
-          _rating(),
-          _rating(),
-          _rating(),
-          _rating(),
-          _rating(),
-          _rating(),
-        ],
+      child: BlocBuilder<RatingBloc, RatingState>(
+        builder: (blocContext, state) {
+          if (state is RatingHasData) {
+            return Column(
+              children: <Widget>[
+                for (var item in state.ratings.ratings)
+                  _rating(item.userID, item.rate),
+              ],
+            );
+          }
+
+          if (state is RatingHasNoData) {
+            return Center(
+              child: Text(
+                translator.text("rating_no_data"),
+              ),
+            );
+          }
+
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
 
-  Widget _rating() {
+  Widget _rating(String userPhone, int userRating) {
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -54,11 +85,11 @@ class _RatingState extends BaseState<Rating> {
           size: Dimens.iconSize,
         ),
         title: Text(
-          "data",
+          userPhone,
           style: Theme.of(context).textTheme.headline6,
         ),
         subtitle: StarDisplay(
-          value: 3, //star value goes here
+          value: userRating, //star value goes here
         ),
       ),
     );
