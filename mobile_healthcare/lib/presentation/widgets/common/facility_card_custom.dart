@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_event.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/facility/had_seen/had_seen_event.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
+import 'package:mobile_healthcare/model/facility/facility_sqlite.dart';
 
 class FacilityCardCustom extends BaseStatelessWidget {
   Facility facility;
+  FacilitySQLite facilitySQLite;
 
-  FacilityCardCustom(this.facility);
+  FacilityCardCustom.Facility(this.facility);
+  FacilityCardCustom.FacilitySQLite(this.facility);
 
   @override
   Widget build(BuildContext context) {
@@ -42,25 +47,52 @@ class FacilityCardCustom extends BaseStatelessWidget {
   }
 
   Widget _centerColumn() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: Dimens.size5),
-          child: Text(
-            facility.name,
-          ),
-        ), //Facility's name
-        _subRow(
-          Icons.location_on,
-          facility.address,
-        ), //Facility's address
-        _subRow(
-          Icons.check_circle_outline,
-          facility.phone,
-        ), //Facility's phone
-      ],
-    );
+    if (facility != null) {
+      return Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: Dimens.size5),
+              child: Text(
+                facility.name,
+              ),
+            ), //Facility's name
+            _subRow(
+              Icons.location_on,
+              facility.address,
+            ), //Facility's address
+            _subRow(
+              Icons.check_circle_outline,
+              facility.phone,
+            ), //Facility's phone
+          ],
+        ),
+      );
+    }
+    if (facilitySQLite != null) {
+      return Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: Dimens.size5),
+              child: Text(
+                facilitySQLite.name,
+              ),
+            ), //Facility's name
+            _subRow(
+              Icons.location_on,
+              facilitySQLite.address,
+            ), //Facility's address
+            _subRow(
+              Icons.check_circle_outline,
+              facilitySQLite.phone,
+            ), //Facility's phone
+          ],
+        ),
+      );
+    }
   }
 
   Widget _subRow(IconData icon, String content) {
@@ -70,9 +102,15 @@ class FacilityCardCustom extends BaseStatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Icon(icon),
-          Padding(
-            padding: const EdgeInsets.only(left: Dimens.size5),
-            child: Text(content),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: Dimens.size5),
+              child: Text(
+                content,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            ),
           ),
         ],
       ),
@@ -85,8 +123,16 @@ class FacilityCardCustom extends BaseStatelessWidget {
       child: IconButton(
           icon: Icon(Icons.close),
           onPressed: () => {
-                BlocProvider.of<HadSeenBloc>(context)
-                    .add(HadSeenDeletePress(facility.id))
+                if (BlocProvider.of(context) is HadSeenBloc)
+                  {
+                    BlocProvider.of<HadSeenBloc>(context)
+                        .add(HadSeenDeletePress(facility.id))
+                  },
+                if (BlocProvider.of(context) is FavoriteBloc)
+                  {
+                    BlocProvider.of<FavoriteBloc>(context)
+                        .add(FavoriteDeletePress(facility.id))
+                  }
               }),
     );
   }

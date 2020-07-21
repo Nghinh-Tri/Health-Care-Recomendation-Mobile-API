@@ -2,7 +2,6 @@ from crawling import facility as factory
 from crawling import speciality as speciality
 from crawling import symptom as symptom
 from crawling import facility_detail as detail
-
 if __name__ == '__main__':
     factory.crawlingFactory("http://www.medinet.gov.vn/DSDonvi.aspx?codekhoi=BVTP",
                     "html\BVTP.html")

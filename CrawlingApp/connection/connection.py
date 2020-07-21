@@ -1,10 +1,13 @@
 import mysql.connector
 # install package mysql python connector
 def connect():
-    return mysql.connector.connect(host='34.87.101.18',
-                                         database='healthcaredb',
-                                         user='tritnse130094',
-                                         password='GNM2mCCCjcAHb6ui')
+    conn = mysql.connector.connect(host='34.87.101.18',
+                                    database='healthcare',
+                                    user='tritnse130094',
+                                    password='GNM2mCCCjcAHb6ui',
+                                    use_unicode=True,
+                                    charset="utf8")
+    return conn;
 
 def insert(name, address,latitude,longtitude, phone, image):
     try:

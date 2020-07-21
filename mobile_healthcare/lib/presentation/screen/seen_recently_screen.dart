@@ -23,7 +23,7 @@ class SeenRecentlyScreen extends BaseStatelessWidget {
             return ListView(
               children: <Widget>[
                 for (var facility in state.listFacility)
-                  FacilityCardCustom(facility),
+                  FacilityCardCustom.Facility(facility),
               ],
             );
           }

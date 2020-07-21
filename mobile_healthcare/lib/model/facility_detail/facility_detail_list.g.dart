@@ -8,7 +8,7 @@ part of 'facility_detail_list.dart';
 
 FacilityDetailList _$FacilityDetailListFromJson(Map<String, dynamic> json) {
   return FacilityDetailList(
-    facilitiesDetail: (json['details'] as List)
+    facilitiesDetail: (json['facilitiesDetail'] as List)
         ?.map((e) => e == null
             ? null
             : FacilityDetail.fromJson(e as Map<String, dynamic>))
