@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/facility/favorite/favorite_event.dart';
 import 'package:mobile_healthcare/model/facility/facility.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,6 +16,16 @@ class ActionBar extends BaseStatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
+        _actionIcon(
+          context: context,
+          icon: Icons.favorite,
+          function: () => {
+            BlocProvider.of<FavoriteBloc>(context).add(
+              FavoriteAddPress(facility),
+            ),
+          },
+        ),
+        _divider(),
         _actionIcon(
           context: context,
           icon: Icons.phone,
@@ -28,8 +41,6 @@ class ActionBar extends BaseStatelessWidget {
             launch("geo:${facility.latitude},${facility.longtitude}"),
           },
         ),
-        _divider(),
-        _actionIcon(context: context, icon: Icons.thumb_up),
       ],
     );
   }

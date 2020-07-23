@@ -100,23 +100,15 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
                 top: Dimens.size12,
               ),
               child: Text(
-                widget.facility.name, //for testing
+                widget.facility.name,
                 style: TextStyle(
                   color: Theme.of(context).cardColor,
                   fontSize: Dimens.size20,
                 ),
               ),
             ),
-            IconButton(
-              icon: Icon(
-                Icons.favorite_border,
-                size: Dimens.size30,
-              ),
-              color: Theme.of(context).cardColor,
-              onPressed: () => {
-                BlocProvider.of<FavoriteBloc>(context)
-                    .add(FavoriteAddPress(widget.facility))
-              },
+            SizedBox(
+              width: Dimens.size45,
             ),
           ],
         ),
@@ -124,7 +116,6 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
     );
   }
 
-  //favorite
   Widget _image() {
     return Container(
       height: Dimens.imageHeight,
@@ -158,7 +149,7 @@ class _FacilityDetailScreenState extends BaseState<FacilityDetailScreen> {
               if (authenBloc.state is AuthenticationSuccess)
                 {
                   Navigator.of(context).push(
-                    MaterialPageRoute<RatingBloc>(
+                    MaterialPageRoute(
                       builder: (routeContext) {
                         return BlocProvider.value(
                           value: ratingBloc,

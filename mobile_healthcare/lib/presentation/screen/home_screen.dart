@@ -103,13 +103,8 @@ class _HomeScreenState extends BaseState<HomeScreen> {
                     fontSize: Dimens.size20),
               ),
             ),
-            IconButton(
-              icon: Icon(
-                Icons.notifications,
-                size: Dimens.size30,
-              ),
-              color: Theme.of(context).cardColor,
-              onPressed: () => {},
+            SizedBox(
+              width: Dimens.size50,
             ),
           ],
         ),

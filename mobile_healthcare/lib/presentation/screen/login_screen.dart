@@ -65,14 +65,7 @@ class _LoginScreenState extends BaseState<LoginScreen> {
           }
 
           if (state is LoginSuccess) {
-            Scaffold.of(listenerContext)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.blue,
-                  content: Text(translator.text("login_success")),
-                ),
-              );
+            Navigator.pop(context);
           }
         },
         child: Container(
@@ -249,13 +242,17 @@ class _LoginScreenState extends BaseState<LoginScreen> {
   Widget _signUpButton(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        Navigator.push(
-          context,
+        Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (routeContext) => BlocProvider(
-              create: (blocContext) => SignUpBloc(repos: userRepos),
-              child: SignUpScreen(),
-            ),
+            builder: (routeContext) {
+              return BlocProvider.value(
+                value: BlocProvider.of<LoginBloc>(context),
+                child: BlocProvider(
+                  create: (blocContext) => SignUpBloc(repos: userRepos),
+                  child: SignUpScreen(),
+                ),
+              );
+            },
           ),
         ),
       },
