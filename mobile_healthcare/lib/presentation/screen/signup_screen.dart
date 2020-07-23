@@ -6,6 +6,8 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_healthcare/common/styles/dimens.dart';
 import 'package:mobile_healthcare/common/widgets/base_widget.dart';
+import 'package:mobile_healthcare/logic/bloc/user/login/login_bloc.dart';
+import 'package:mobile_healthcare/logic/bloc/user/login/login_event.dart';
 import 'package:mobile_healthcare/logic/bloc/user/sign_up/sign_up_bloc.dart';
 import 'package:mobile_healthcare/logic/bloc/user/sign_up/sign_up_event.dart';
 import 'package:mobile_healthcare/logic/bloc/user/sign_up/sign_up_state.dart';
@@ -25,6 +27,9 @@ class _SignUpScreenState extends BaseState<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: close_sinks
+    final loginBloc = BlocProvider.of<LoginBloc>(context);
+
     _onSignUpButtonPressed() {
       if (userPhone.text.isEmpty ||
           userFullname.text.isEmpty ||
@@ -65,14 +70,13 @@ class _SignUpScreenState extends BaseState<SignUpScreen> {
           }
 
           if (state is SignUpSuccess) {
-            Scaffold.of(listenerContext)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.blue,
-                  content: Text(translator.text("signup_success")),
-                ),
-              );
+            loginBloc.add(
+              LoginButtonPressed(
+                phone: userPhone.text,
+                passwords: userPassword.text,
+              ),
+            );
+            Navigator.pop(context);
           }
         },
         child: Container(
